@@ -13,8 +13,9 @@ public class Rook extends Piece{
     this.column = column;
   }
   
-  public void move() {
-    
+  public void move(int x, int y) {
+    super(x,y);
+    System.out.println("Rook move");
   }
 
   public String toString() {

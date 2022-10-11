@@ -13,8 +13,9 @@ public class Queen extends Piece{
     this.column = column;
   }
   
-  public void move(){
-    
+  public void move(int x,int y){
+    super(x,y);
+    System.out.println("Queen move");
   }
 
   public String toString() {

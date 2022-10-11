@@ -15,8 +15,7 @@ public class Pawn extends Piece{
   }
   
   public void move(int x,int y){
-    this.x = x;
-    this.y = y;
+    super(x,y);
     System.out.println("Pawn move");
   }
 
