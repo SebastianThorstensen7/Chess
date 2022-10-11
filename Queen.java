@@ -14,7 +14,7 @@ public class Queen extends Piece{
   }
   
   public void move(int x,int y){
-    super(x,y);
+    super.move(x,y);
     System.out.println("Queen move");
   }
 

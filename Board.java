@@ -49,7 +49,7 @@ public class Board {
       String Response = scn.next();
       for (Piece p : Pieces) {
         if (p.getPieceID().equals(Response) && currentTeam == p.getTeam()) {
-          p.move(4,4);
+          p.move(2,4);
           valid = false;
         }
       }

@@ -14,7 +14,7 @@ public class Bishop extends Piece{
   }
   
   public void move(int x, int y){
-    super(x,y);
+    super.move(x,y);
     System.out.println("Bishop move");
   }
 
