@@ -8,7 +8,7 @@ public class Board {
   ArrayList<Piece> p1capture;
   ArrayList<Piece> p2capture;
   ArrayList<Piece> Pieces;
-  Boolean currentTeam = true;
+  Boolean currentTeam = false;
   Scanner scn = new Scanner(System.in);
 
   public Board(ArrayList<Piece> Pieces) {
@@ -49,7 +49,7 @@ public class Board {
       String Response = scn.next();
       for (Piece p : Pieces) {
         if (p.getPieceID().equals(Response) && currentTeam == p.getTeam()) {
-          p.move(2,4);
+          p.move(scn);
           valid = false;
         }
       }

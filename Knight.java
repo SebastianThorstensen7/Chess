@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Knight extends Piece{
 
   Boolean    Team;
@@ -13,8 +14,8 @@ public class Knight extends Piece{
     this.column = column;
   }
   
-  public void move(int x, int y){
-    super.move(x,y);
+  public void move(Scanner scn){
+    super.move(scn);
     System.out.println("Knight move");
   }
 

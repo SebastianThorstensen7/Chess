@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Pawn extends Piece{
 
   
@@ -14,8 +15,8 @@ public class Pawn extends Piece{
     this.y = y;
   }
   
-  public void move(int x,int y){
-    super.move(x,y);
+  public void move(Scanner scn){
+    super.move(scn);
     System.out.println("Pawn move");
   }
 

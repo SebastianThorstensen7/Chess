@@ -4,7 +4,7 @@
 //9.6.22
 
 /*
-  This is chess. Currently the board can be created with the pieces in the correct places. I am working on being able to move pieces. Then I will actually work on having specific pieces move the way they are mean't to move.
+This is chess. Currently the board can be created with the pieces in the correct places. I am working on being able to move pieces. Then I will actually work on having specific pieces move the way they are meant to move.
 */
 
 import java.util.ArrayList;

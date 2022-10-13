@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 public class Piece {
   // Fields -- or state variables
   // what our Piece has
@@ -17,10 +17,16 @@ public class Piece {
 
   // Methods -- or functions ==> what our class can do
 
-  public void move(int x, int y){
+  public void move(Scanner scn){
+    System.out.println("Where would you like the piece to go? (x,y)");
+    String response = scn.next();
+    int x = Integer.parseInt(response.substring(0,response.indexOf(",")));
+    
+    int y = Integer.parseInt(response.substring(response.indexOf(",") + 1));
     this.row = x;
     this.column = y;
   }
+
 
   public int getRow() {
     return this.row;
