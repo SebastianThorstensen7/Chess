@@ -19,6 +19,11 @@ public class King extends Piece{
     System.out.println("King move");
   }
 
+  //validate move method for King
+  public boolean validateMove(int x, int y) {
+    return true;
+  }
+
   public String toString() {
     if(Team) {
       return "♔";

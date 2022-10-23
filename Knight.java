@@ -19,6 +19,11 @@ public class Knight extends Piece{
     System.out.println("Knight move");
   }
 
+  //validate move method for Knight
+  public boolean validateMove(int x, int y) {
+    return true;
+  }
+
   public String toString() {
     if(Team) {
       return "♘";

@@ -19,6 +19,11 @@ public class Bishop extends Piece{
     System.out.println("Bishop move");
   }
 
+  //Validate move method for bishop
+  public boolean validateMove(int x, int y) {
+    return true;
+  }
+
   public String toString() {
     if(Team) {
       return "♗";

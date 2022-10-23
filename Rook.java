@@ -19,6 +19,11 @@ public class Rook extends Piece{
     System.out.println("Rook move");
   }
 
+  //validate move method for Rook
+  public boolean validateMove(int x, int y) {
+    return true;
+  }
+
   public String toString() {
     if(Team) {
       return "♖";

@@ -20,6 +20,11 @@ public class Pawn extends Piece{
     System.out.println("Pawn move");
   }
 
+  //validate move method for pawn
+  public boolean validateMove(int x, int y) {
+    return true;
+  }
+
   public String toString() {
     if(Team) {
       return "♙";

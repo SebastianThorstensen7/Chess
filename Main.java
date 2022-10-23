@@ -40,6 +40,10 @@ class Main {
     Board Board = new Board(Pieces);
     Board.selectPiece();
     Board.updateState();
+    Board.switchTeam();
+    Board.selectPiece();
+    Board.updateState();
+    
 
     System.out.println();
     System.out.println();
