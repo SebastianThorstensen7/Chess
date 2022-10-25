@@ -1,3 +1,8 @@
+//Manas Kumar is in charge of this file
+//10/24/2022
+//P3
+//
+
 import java.util.Scanner;
 public class Bishop extends Piece{
 
