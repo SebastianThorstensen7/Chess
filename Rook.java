@@ -1,3 +1,11 @@
+// khushi singh
+// 10.25.2022
+// p.3
+// team chess 
+
+// i own rook
+// am responsible for move validation
+
 import java.util.Scanner;
 public class Rook extends Piece{
 
