@@ -1,7 +1,7 @@
 //Manas Kumar is in charge of this file
 //10/24/2022
 //P3
-//
+//I will be making changes to this file
 
 import java.util.Scanner;
 public class Bishop extends Piece{
