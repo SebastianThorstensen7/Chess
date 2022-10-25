@@ -5,6 +5,7 @@
 
 /*
 This is chess. Currently the board can be created with the pieces in the correct places. I am working on being able to validate piece moves to have them move the way the pieces are intended to move. After that I think I will start working on the logic of the game.
+
 */
 
 import java.util.ArrayList;
