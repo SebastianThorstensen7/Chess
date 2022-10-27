@@ -34,11 +34,14 @@ public class Rook extends Piece{
   public boolean validateMove(int x, int y) {
     if (this.row != x && this.column != y){
       return false;
+      
     }
     else if (this.row != x && this.column == y){
+      this.row = x;
       return true;
     }
     else if (this.row == x && this.column != y){
+      this.column = y;
       return true;
     }
     else {
