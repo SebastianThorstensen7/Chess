@@ -6,11 +6,14 @@
 // i own rook
 // am responsible for move validation
 
+
+// this.x = original
+
 import java.util.Scanner;
 public class Rook extends Piece{
 
   Boolean    Team;
-  String        pieceID;
+  String     pieceID;
   int        row;
   int        column;
   
@@ -29,7 +32,19 @@ public class Rook extends Piece{
 
   //validate move method for Rook
   public boolean validateMove(int x, int y) {
-    return true;
+    if (this.row != x && this.column != y){
+      return false;
+    }
+    else if (this.row != x && this.column == y){
+      return true;
+    }
+    else if (this.row == x && this.column != y){
+      return true;
+    }
+    else {
+      return false;
+    }
+  
   }
 
   public String toString() {

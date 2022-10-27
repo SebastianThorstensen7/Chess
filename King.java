@@ -21,6 +21,7 @@ public class King extends Piece{
 
   //validate move method for King
   public boolean validateMove(int x, int y) {
+    
     return true;
   }
 
