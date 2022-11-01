@@ -6,57 +6,53 @@
 // i own rook
 // am responsible for move validation
 
-
 // this.x = original
 
 import java.util.Scanner;
-public class Rook extends Piece{
 
-  Boolean    Team;
-  String     pieceID;
-  int        row;
-  int        column;
-  
-  public Rook(Boolean Team, String pieceID, int row, int column){
-    super(Team,pieceID,row,column);
+public class Rook extends Piece {
+
+  Boolean Team;
+  String pieceID;
+  int row;
+  int column;
+
+  public Rook(Boolean Team, String pieceID, int row, int column) {
+    super(Team, pieceID, row, column);
     this.Team = Team;
     this.pieceID = pieceID;
     this.row = row;
     this.column = column;
   }
-  
+
   public void move(Scanner scn) {
     super.move(scn);
     System.out.println("Rook move");
   }
 
-  //validate move method for Rook
+  // validate move method for Rook
   public boolean validateMove(int x, int y, Square State) {
-    if(State.isNotOccupied()) {
-      if (this.row != x && this.column != y){
-      return false;
-      
-    }
-    else if (this.row != x && this.column == y){
-      this.row = x;
-      return true;
-    }
-    else if (this.row == x && this.column != y){
-      this.column = y;
-      return true;
-    }
-    else {
-      return false;
-    }
+    if (State.isNotOccupied()) {
+      if (this.row != x && this.column != y) {
+        return false;
+
+      } else if (this.row != x && this.column == y) {
+        this.row = x;
+        return true;
+      } else if (this.row == x && this.column != y) {
+        this.column = y;
+        return true;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
-    
-  
+
   }
 
   public String toString() {
-    if(Team) {
+    if (Team) {
       return "♖";
     } else {
       return "♜";

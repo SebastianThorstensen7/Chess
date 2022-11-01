@@ -3,7 +3,7 @@ public class Square {
   private Piece piece;
   private String symbol;
 
-  public Square(){
+  public Square() {
     this.symbol = " ";
   }
 
@@ -26,16 +26,15 @@ public class Square {
   }
 
   public boolean isNotOccupied() {
-    if(this.symbol.equals(" ")) {
+    if (this.symbol.equals(" ")) {
       return true;
     } else {
       return false;
     }
   }
 
-  public String toString(){
+  public String toString() {
     return "[ " + symbol + " ]";
   }
-
 
 }
