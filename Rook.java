@@ -35,17 +35,20 @@ public class Rook extends Piece {
     if (State.isNotOccupied()) {
       if (this.row != x && this.column != y) {
         return false;
-
-      } else if (this.row != x && this.column == y) {
+      } 
+      else if (this.row != x && this.column == y) {
         this.row = x;
         return true;
-      } else if (this.row == x && this.column != y) {
+      } 
+      else if (this.row == x && this.column != y) {
         this.column = y;
         return true;
-      } else {
+      } 
+      else {
         return false;
       }
-    } else {
+    } 
+    else {
       return false;
     }
 
