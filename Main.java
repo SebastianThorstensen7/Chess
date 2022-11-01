@@ -14,46 +14,31 @@ class Main {
   public static void main(String[] args) {
     System.out.println();
 
-    ArrayList<Piece> Pieces = new ArrayList<Piece>();
+    ArrayList<Piece> pieces = new ArrayList<Piece>();
 
     for (int i = 0; i < 8; i++) {
-      Pieces.add(new Pawn(true, "P" + (i + 1), 1, i));
+      pieces.add(new Pawn(true, "P" + (i + 1), 1, i));
     }
     for (int k = 0; k < 2; k++) {
-      Pieces.add(new Rook(true, "R" + (k + 1), 0, (k * 7)));
-      Pieces.add(new Knight(true, "KN" + (k + 1), 0, (k * 5) + 1));
-      Pieces.add(new Bishop(true, "B" + (k + 1), 0, (k * 3) + 2));
+      pieces.add(new Rook(true, "R" + (k + 1), 0, (k * 7)));
+      pieces.add(new Knight(true, "KN" + (k + 1), 0, (k * 5) + 1));
+      pieces.add(new Bishop(true, "B" + (k + 1), 0, (k * 3) + 2));
     }
-    Pieces.add(new King(true, "K", 0, 4));
-    Pieces.add(new Queen(true, "Q", 0, 3));
+    pieces.add(new King(true, "K", 0, 4));
+    pieces.add(new Queen(true, "Q", 0, 3));
 
     for (int j = 0; j < 8; j++) {
-      Pieces.add(new Pawn(false, "P" + (j + 1), 6, j));
+      pieces.add(new Pawn(false, "P" + (j + 1), 6, j));
     }
     for (int k = 0; k < 2; k++) {
-      Pieces.add(new Rook(false, "R" + (k + 1), 7, (k * 7)));
-      Pieces.add(new Knight(false, "KN" + (k + 1), 7, (k * 5) + 1));
-      Pieces.add(new Bishop(false, "B" + (k + 1), 7, (k * 3) + 2));
+      pieces.add(new Rook(false, "R" + (k + 1), 7, (k * 7)));
+      pieces.add(new Knight(false, "KN" + (k + 1), 7, (k * 5) + 1));
+      pieces.add(new Bishop(false, "B" + (k + 1), 7, (k * 3) + 2));
     }
-    Pieces.add(new King(false, "K", 7, 4));
-    Pieces.add(new Queen(false, "Q", 7, 3));
+    pieces.add(new King(false, "K", 7, 4));
+    pieces.add(new Queen(false, "Q", 7, 3));
 
-    Board Board = new Board(Pieces);
-    
-    for(int i = 0; i < 100; i++) {
-      Board.selectPiece();
-      Board.updateState();
-      Board.switchTeam();
-    }
-    
-
-
-    
-
-    System.out.println();
-    System.out.println();
-    System.out.println("I Work!");
-    System.out.println();
-    System.out.println();
+    Chessgame standardGame = new Chessgame(pieces);
+    standardGame.play();
   }
 }
