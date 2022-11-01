@@ -38,10 +38,22 @@ public class Rook extends Piece {
       } 
       else if (this.row != x && this.column == y) {
         this.row = x;
+       
+        for (int i =0; i<x; i++){
+          if (state[i][y].isNotOccupied() == false){
+            return false;
+          }
+        }
         return true;
       } 
       else if (this.row == x && this.column != y) {
         this.column = y;
+
+        for (int i =0; i<y; i++){
+          if (state[x][i].isNotOccupied() == false){
+            return false;
+          }
+        }
         return true;
       } 
       else {
@@ -51,6 +63,8 @@ public class Rook extends Piece {
     else {
       return false;
     }
+
+    
 
   }
 
