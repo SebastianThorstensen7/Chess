@@ -2,9 +2,8 @@ import java.util.*;
 
 public class Board {
 
-  Square[][] State = new Square[8][8];
-  ArrayList<Piece> p1capture;
-  ArrayList<Piece> p2capture;
+  Square[][] state = new Square[8][8];
+  ArrayList<Piece> Captured;
   ArrayList<Piece> Pieces;
   Boolean currentTeam = false;
   Scanner scn = new Scanner(System.in);
@@ -17,7 +16,7 @@ public class Board {
   public void Draw() {
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 8; j++) {
-        System.out.print(State[i][j]);
+        System.out.print(state[i][j]);
       }
       System.out.println();
       System.out.println();
@@ -28,11 +27,11 @@ public class Board {
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 8; j++) {
         Square meSquare = new Square();
-        State[i][j] = meSquare;
+        state[i][j] = meSquare;
         for (Piece p : Pieces) {
           if ((p.getRow() == i) && (p.getColumn() == j)) {
             meSquare.setPiece(p);
-            State[i][j] = meSquare;
+            state[i][j] = meSquare;
           }
         }
       }
@@ -66,7 +65,7 @@ public class Board {
       String response = scn.next();
       int x = Integer.parseInt(response.substring(0, response.indexOf(","))) - 1;
       int y = Integer.parseInt(response.substring(response.indexOf(",") + 1)) - 1;
-      Boolean valid = p.validateMove(x, y, State[x][y]);
+      Boolean valid = p.validateMove(x, y, state);
       if (valid) {
         p.row = x;
         p.column = y;

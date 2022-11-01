@@ -24,7 +24,7 @@ public class Piece {
 
   
   //validate move method
-  public boolean validateMove(int x, int y, Square square) {
+  public boolean validateMove(int x, int y, Square[][] state) {
     return true;
   }
 

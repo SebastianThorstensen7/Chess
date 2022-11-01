@@ -31,8 +31,8 @@ public class Rook extends Piece {
   }
 
   // validate move method for Rook
-  public boolean validateMove(int x, int y, Square State) {
-    if (State.isNotOccupied()) {
+  public boolean validateMove(int x, int y, Square[][] state) {
+    if (state[x][y].isNotOccupied()) {
       if (this.row != x && this.column != y) {
         return false;
       } 
