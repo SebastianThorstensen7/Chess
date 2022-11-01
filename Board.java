@@ -47,16 +47,32 @@ public class Board {
       String Response = scn.next();
       for (Piece p : Pieces) {
         if (p.getPieceID().equals(Response) && currentTeam == p.getTeam()) {
-          p.move(scn);
+          this.move(p);
           valid = false;
         }
       }
     }
-    
+
   }
 
   public void switchTeam() {
     this.currentTeam = !currentTeam;
+  }
+
+  public void move(Piece p) {
+    boolean invalidMove = true;
+    while (invalidMove) {
+      System.out.println("Where would you like the piece to go? (x,y)");
+      String response = scn.next();
+      int x = Integer.parseInt(response.substring(0, response.indexOf(","))) - 1;
+      int y = Integer.parseInt(response.substring(response.indexOf(",") + 1)) - 1;
+      Boolean valid = p.validateMove(x, y);
+      if (valid && State[x][y].isNotOccupied() == true) {
+        p.row = x;
+        p.column = y;
+        invalidMove = false;
+      }
+    }
   }
 
 }

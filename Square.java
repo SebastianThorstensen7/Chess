@@ -17,6 +17,22 @@ public class Square {
     this.symbol = p.toString();
   }
 
+  public String getSymbol() {
+    return this.symbol;
+  }
+
+  public Piece getPiece() {
+    return this.piece;
+  }
+
+  public boolean isNotOccupied() {
+    if(this.symbol.equals(" ")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public String toString(){
     return "[ " + symbol + " ]";
   }

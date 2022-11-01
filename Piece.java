@@ -19,19 +19,7 @@ public class Piece {
   // Methods -- or functions ==> what our class can do
 
   public void move(Scanner scn){
-    boolean invalidMove = true;
-    while(invalidMove) {
-    System.out.println("Where would you like the piece to go? (x,y)");
-    String response = scn.next();
-    int x = Integer.parseInt(response.substring(0,response.indexOf(","))) - 1;
-    int y = Integer.parseInt(response.substring(response.indexOf(",") + 1)) - 1;
-    Boolean valid = this.validateMove(x,y);
-    if(x <= 7 && y <= 7 && valid) {
-      this.row = x;
-      this.column = y;
-      invalidMove = false;
-    }
-    }
+    
   }
 
   
@@ -45,6 +33,8 @@ public class Piece {
   public int getRow() {
     return this.row;
   }
+
+  
 
   public int getColumn() {
     return this.column;
