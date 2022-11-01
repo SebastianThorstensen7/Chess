@@ -66,7 +66,7 @@ public class Board {
       String response = scn.next();
       int x = Integer.parseInt(response.substring(0, response.indexOf(","))) - 1;
       int y = Integer.parseInt(response.substring(response.indexOf(",") + 1)) - 1;
-      Boolean valid = p.validateMove(x, y);
+      Boolean valid = p.validateMove(x, y, State[x][y]);
       if (valid && State[x][y].isNotOccupied() == true) {
         p.row = x;
         p.column = y;

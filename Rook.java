@@ -31,8 +31,9 @@ public class Rook extends Piece{
   }
 
   //validate move method for Rook
-  public boolean validateMove(int x, int y) {
-    if (this.row != x && this.column != y){
+  public boolean validateMove(int x, int y, Square State) {
+    if(State.isNotOccupied()) {
+      if (this.row != x && this.column != y){
       return false;
       
     }
@@ -47,6 +48,10 @@ public class Rook extends Piece{
     else {
       return false;
     }
+    } else {
+      return false;
+    }
+    
   
   }
 
