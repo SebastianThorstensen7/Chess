@@ -4,8 +4,7 @@
 //9.6.22
 
 /*
-This is chess. Currently the board can be created with the pieces in the correct places. I am working on being able to validate piece moves to have them move the way the pieces are intended to move. After that I think I will start working on the logic of the game.
-
+This is chess. Currently every piece can be moved and the games basic structure is there. Next step is to work on more move validation for the pieces and making sure the pieces are taken. After that will be win validation for the game probably.
 */
 
 import java.util.ArrayList;
@@ -40,5 +39,7 @@ class Main {
 
     Chessgame standardGame = new Chessgame(pieces);
     standardGame.play();
+
+    
   }
 }

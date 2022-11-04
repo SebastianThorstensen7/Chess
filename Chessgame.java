@@ -16,5 +16,9 @@ public class Chessgame {
       this.Board.switchTeam();
     }
   }
+
+  public boolean winValidation() {
+    return true;
+  }
   
 }

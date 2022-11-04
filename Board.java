@@ -40,14 +40,14 @@ public class Board {
   }
 
   public void selectPiece() {
-    boolean valid = true;
-    while (valid) {
+    boolean invalid = true;
+    while (invalid) {
       System.out.println("Please select a valid piece to move");
-      String Response = scn.next();
+      String response = scn.next();
       for (Piece p : Pieces) {
-        if (p.getPieceID().equals(Response) && currentTeam == p.getTeam()) {
+        if (p.getPieceID().equals(response) && currentTeam == p.getTeam()) {
           this.move(p);
-          valid = false;
+          invalid = false;
         }
       }
     }
@@ -60,17 +60,25 @@ public class Board {
 
   public void move(Piece p) {
     boolean invalidMove = true;
+    System.out.println("Where would you like the piece to go? (row,column) or 'back' to select another piece.");
     while (invalidMove) {
-      System.out.println("Where would you like the piece to go? (x,y)");
       String response = scn.next();
-      int x = Integer.parseInt(response.substring(0, response.indexOf(","))) - 1;
-      int y = Integer.parseInt(response.substring(response.indexOf(",") + 1)) - 1;
-      Boolean valid = p.validateMove(x, y, state);
-      if (valid) {
-        p.row = x;
-        p.column = y;
-        invalidMove = false;
+      if (response.equals("back")) {
+        this.selectPiece();
+        break;
+      } else {
+        int column = Integer.parseInt(response.substring(0, response.indexOf(","))) - 1;
+        int row = Integer.parseInt(response.substring(response.indexOf(",") + 1)) - 1;
+        Boolean valid = p.validateMove(column, row, state);
+        if (valid) {
+          p.row = column;
+          p.column = row;
+          invalidMove = false;
+        } else {
+          System.out.println("Invaild Move");
+        }
       }
+
     }
   }
 
