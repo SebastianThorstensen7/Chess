@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Queen extends Piece{
 
   Boolean    Team;
-  String        pieceID;
+  String     pieceID;
   int        row;
   int        column;
   

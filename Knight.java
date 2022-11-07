@@ -20,8 +20,13 @@ public class Knight extends Piece{
   }
 
   //validate move method for Knight
-  public boolean validateMove(int x, int y) {
-    return true;
+  public boolean validateMoveint (int x, int y, Square[][] state) {
+    if (state[x][y].isNotOccupied() == true){
+       return true; 
+    }
+    else{
+       return false;
+    }
   }
 
   public String toString() {

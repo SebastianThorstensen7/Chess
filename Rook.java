@@ -43,6 +43,9 @@ public class Rook extends Piece {
           if (state[i][y].isNotOccupied() == false){
             return false;
           }
+      
+            
+          }
         }
         return true;
       } 
@@ -57,15 +60,9 @@ public class Rook extends Piece {
         return true;
       } 
       else {
-        return false;
+        return true;
       }
-    } 
-    else {
-      return false;
-    }
-
-    
-
+   
   }
 
   public String toString() {
