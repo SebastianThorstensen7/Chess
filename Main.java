@@ -4,7 +4,7 @@
 //9.6.22
 
 /*
-This is chess. Currently every piece can be moved and the games basic structure is there. Next step is to work on more move validation for the pieces and making sure the pieces are taken. After that will be win validation for the game probably.
+This is chess. Currently every piece can be moved and the games basic structure is there. Next step is to work on more move validation for the pieces and making sure the pieces are taken. After that will allowing the user to enter a pieces coordinates to select said piece to move.
 */
 
 import java.util.ArrayList;

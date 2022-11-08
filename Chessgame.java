@@ -11,7 +11,7 @@ public class Chessgame {
 
   public void play() {
     for(int i = 0; i < 1000; i++) {
-      this.Board.selectPiece();
+      this.Board.move();
       this.Board.updateState();
       this.Board.switchTeam();
     }

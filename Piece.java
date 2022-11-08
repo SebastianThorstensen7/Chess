@@ -28,7 +28,6 @@ public class Piece {
     return true;
   }
 
-
   
   public int getRow() {
     return this.row;

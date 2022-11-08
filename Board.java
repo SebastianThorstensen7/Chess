@@ -3,7 +3,7 @@ import java.util.*;
 public class Board {
 
   Square[][] state = new Square[8][8];
-  ArrayList<Piece> Captured;
+  ArrayList<Piece> Captured = new ArrayList<Piece>();
   ArrayList<Piece> Pieces;
   Boolean currentTeam = false;
   Scanner scn = new Scanner(System.in);
@@ -39,33 +39,32 @@ public class Board {
     this.Draw();
   }
 
-  public void selectPiece() {
+  public Piece selectPiece() {
     boolean invalid = true;
     while (invalid) {
       System.out.println("Please select a valid piece to move");
       String response = scn.next();
       for (Piece p : Pieces) {
         if (p.getPieceID().equals(response) && currentTeam == p.getTeam()) {
-          this.move(p);
-          invalid = false;
+          return p;
         }
       }
     }
-
+    return null;
   }
 
   public void switchTeam() {
     this.currentTeam = !currentTeam;
   }
 
-  public void move(Piece p) {
+  public void move() {
+    Piece p = this.selectPiece();
     boolean invalidMove = true;
-    System.out.println("Where would you like the piece to go? (row,column) or 'back' to select another piece.");
     while (invalidMove) {
+      System.out.println("Where would you like the piece to go? (row,column) or 'back' to select another piece.");
       String response = scn.next();
       if (response.equals("back")) {
-        this.selectPiece();
-        break;
+        p = this.selectPiece();
       } else {
         int column = Integer.parseInt(response.substring(0, response.indexOf(","))) - 1;
         int row = Integer.parseInt(response.substring(response.indexOf(",") + 1)) - 1;
@@ -73,6 +72,7 @@ public class Board {
         if (valid) {
           p.row = column;
           p.column = row;
+          this.takePiece(p);
           invalidMove = false;
         } else {
           System.out.println("Invaild Move");
@@ -80,6 +80,20 @@ public class Board {
       }
 
     }
+  }
+
+  public void takePiece(Piece p1) {
+    Piece temp = null;
+    for (Piece p : Pieces) {
+        if (p1.getRow() == p.getRow() && p1.getColumn() == p.getColumn()) {
+          if (p1.getTeam() != p.getTeam()) {
+            temp = p;
+            Captured.add(p);
+            System.out.println("Removing " + temp.toString());
+          }
+        }
+    }
+    Pieces.remove(temp);
   }
 
 }
