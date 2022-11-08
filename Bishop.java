@@ -39,12 +39,6 @@ public class Bishop extends Piece {
     System.out.println("Bishop move");
   }
 
-  public int slope(int xNewPos, int yNewPos) {
-
-    return (yNewPos - this.row) / (xNewPos - this.column);
-    // return 1;
-  }
-
   private double getSlope(double x, double y) {
     double slope = Math.abs((double) ((y - column) / (x - row)));
     System.out.println(slope);
