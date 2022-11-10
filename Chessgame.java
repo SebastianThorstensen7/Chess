@@ -10,15 +10,17 @@ public class Chessgame {
   }
 
   public void play() {
-    for(int i = 0; i < 1000; i++) {
+    boolean checkmate = false;
+    while(!checkmate) {
       this.Board.move();
       this.Board.updateState();
       this.Board.switchTeam();
+      checkmate = winValidation();
     }
   }
 
   public boolean winValidation() {
-    return true;
+    return false;
   }
   
 }

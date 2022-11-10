@@ -45,6 +45,13 @@ public class Board {
       System.out.println("Please select a valid piece to move");
       String response = scn.next();
       for (Piece p : Pieces) {
+        if(response.contains(",")) {
+          int column = Integer.parseInt(response.substring(response.indexOf(",") + 1)) - 1;
+          int row = Integer.parseInt(response.substring(0, response.indexOf(","))) - 1;
+          if(p.getRow() == row && p.getColumn() == column) {
+            return p;
+          }
+        }
         if (p.getPieceID().equals(response) && currentTeam == p.getTeam()) {
           return p;
         }
@@ -89,7 +96,6 @@ public class Board {
           if (p1.getTeam() != p.getTeam()) {
             temp = p;
             Captured.add(p);
-            System.out.println("Removing " + temp.toString());
           }
         }
     }

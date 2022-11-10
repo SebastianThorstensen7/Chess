@@ -4,7 +4,7 @@
 //9.6.22
 
 /*
-This is chess. Currently every piece can be moved and the games basic structure is there. Next step is to work on more move validation for the pieces and making sure the pieces are taken. After that will allowing the user to enter a pieces coordinates to select said piece to move.
+This is chess. Currently all pieces can be moved with some having move validation being worked, pieces can be taken and stored away, and you can now select a piece by feeding the console the coordinates instead of being forced to use the pieces ID. Next step is probably more move validation and then making the logic for check and check mate.
 */
 
 import java.util.ArrayList;
