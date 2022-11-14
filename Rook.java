@@ -34,32 +34,43 @@ public class Rook extends Piece {
   public boolean validateMove(int x, int y, Square[][] state) {
     if (state[x][y].isNotOccupied()) {
       if (this.row != x && this.column != y) {
+        System.out.println("both are different");
         return false;
       } 
       else if (this.row != x && this.column == y) {
-        this.row = x;
-       
         for (int i =0; i<x; i++){
           if (state[i][y].isNotOccupied() == false){
+            System.out.println("occupied in between");
             return false;
           }
-      
-            
+          else if (x-1 == i){
+            this.row = x;
+            return true;
           }
-        }
+          
+         }
+        this.row = x;
         return true;
+        }
+      else {
+        return true;
+      }
+       
       } 
+      
       else if (this.row == x && this.column != y) {
-        this.column = y;
-
+        
         for (int i =0; i<y; i++){
           if (state[x][i].isNotOccupied() == false){
+            System.out.println("occupied in between part 2");
             return false;
           }
         }
-        return true;
+        this.column = y;
+       return true;
       } 
       else {
+        this.column = y;
         return true;
       }
    

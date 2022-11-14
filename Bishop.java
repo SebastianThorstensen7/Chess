@@ -19,7 +19,7 @@ public class Bishop extends Piece {
 
   public Bishop(Boolean Team, String pieceID, int row, int column, ArrayList<Piece> Pieces) {
     super(Team, pieceID, row, column);
-    System.out.println("Making a bishop");
+   // System.out.println("Making a bishop");
     this.Team = Team;
     this.pieceID = pieceID;
     this.row = row;

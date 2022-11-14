@@ -76,12 +76,13 @@ public class Board {
         int column = Integer.parseInt(response.substring(0, response.indexOf(","))) - 1;
         int row = Integer.parseInt(response.substring(response.indexOf(",") + 1)) - 1;
         Boolean valid = p.validateMove(column, row, state);
-        if (valid) {
+        if (valid == true) {
           p.row = column;
           p.column = row;
           this.takePiece(p);
           invalidMove = false;
-        } else {
+        } 
+        else if (valid == false){
           System.out.println("Invaild Move");
         }
       }

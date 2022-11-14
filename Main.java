@@ -37,9 +37,15 @@ class Main {
     pieces.add(new King(false, "K", 7, 4));
     pieces.add(new Queen(false, "Q", 7, 3));
 
-    Chessgame standardGame = new Chessgame(pieces);
-    standardGame.play();
+   // Chessgame standardGame = new Chessgame(pieces);
+   // standardGame.play();
 
+    
+    ArrayList<Piece> rookStuff = new ArrayList<Piece>();
+    rookStuff.add(new Rook(false, "R", 4,5));
+
+    Chessgame rookTest = new Chessgame(rookStuff);
+    rookTest.play();
     
   }
 }
