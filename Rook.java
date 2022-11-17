@@ -73,7 +73,8 @@ public class Rook extends Piece {
         this.column = y;
         return true;
       }
-   
+  
+    
   }
 
   public String toString() {
@@ -84,3 +85,4 @@ public class Rook extends Piece {
     }
   }
 }
+
