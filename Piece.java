@@ -18,37 +18,50 @@ public class Piece {
 
   // Methods -- or functions ==> what our class can do
 
-  public void move(Scanner scn){
-    
+  public void move(Scanner scn) {
+
   }
 
-  
-  //validate move method
+  // validate move method
   public boolean validateMove(int row, int column, Square[][] state) {
-    if(state[column][row].isNotOccupied()) {
-      if(this.column +- 1 == column || column == this.column) {
-        if(this.row +- 1 == row || row == this.row) {
-          this.column = column;
-          this.row = row;
-          return true;
+    if (state[column][row].isNotOccupied()) {
+      if (this.column != column && this.row != row) {
+        if ((this.column + 1 == column) || (this.column - 1 == column)) {
+          if ((this.row + 1 == row) || (this.row - 1 == row )) {
+            this.column = column;
+            this.row = row;
+            return true;
+          }
+        } else {
+          return false;
         }
-       } else {
-        return false;
-       }
+      } else if((this.column != column) && (this.row == row) ) {
+        if(this.column + 1 == column || this.column - 1 == column) {
+          this.column = column;
+          return true;
+        } else {
+          return false;
+        }
+      } else if((this.column == column) && (this.row != row)) {
+        if ((this.row + 1 == row) || (this.row - 1 == row )) {
+            this.row = row;
+            return true;
+        } else {
+          return false;
+        }
+      }
+
       return true;
-    } else if(state[column][row].getPiece().getTeam() != this.team){
+    } else if (state[column][row].getPiece().getTeam() != this.team) {
       return true;
     } else {
       return false;
     }
   }
 
-  
   public int getRow() {
     return this.row;
   }
-
-  
 
   public int getColumn() {
     return this.column;
@@ -61,7 +74,5 @@ public class Piece {
   public boolean getTeam() {
     return this.team;
   }
-
-  
 
 }
