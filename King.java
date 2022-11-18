@@ -1,14 +1,14 @@
 import java.util.Scanner;
 public class King extends Piece{
 
-  Boolean    Team;
-  String        pieceID;
+  Boolean    team;
+  String     pieceID;
   int        row;
   int        column;
   
   public King(Boolean Team, String pieceID, int row, int column){
     super(Team,pieceID,row,column);
-    this.Team = Team;
+    this.team = Team;
     this.pieceID = pieceID;
     this.row = row;
     this.column = column;
@@ -20,13 +20,12 @@ public class King extends Piece{
   }
 
   //validate move method for King
-  public boolean validateMove(int x, int y) {
-    
-    return true;
+  public boolean validateMove(int row, int column, Square[][] state) {
+    return super.validateMove(row,column,state);
   }
 
   public String toString() {
-    if(Team) {
+    if(team) {
       return "♔";
     } else {
       return "♚";

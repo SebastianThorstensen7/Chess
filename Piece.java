@@ -3,14 +3,14 @@ import java.util.Scanner;
 public class Piece {
   // Fields -- or state variables
   // what our Piece has
-  Boolean Team;
+  Boolean team;
   String pieceID;
   int row;
   int column;
 
   // Constructor
   public Piece(Boolean Team, String pieceID, int row, int column) {
-    this.Team = Team;
+    this.team = Team;
     this.pieceID = pieceID;
     this.row = row;
     this.column = column;
@@ -24,8 +24,23 @@ public class Piece {
 
   
   //validate move method
-  public boolean validateMove(int x, int y, Square[][] state) {
-    return true;
+  public boolean validateMove(int row, int column, Square[][] state) {
+    if(state[column][row].isNotOccupied()) {
+      if(this.column +- 1 == column || column == this.column) {
+        if(this.row +- 1 == row || row == this.row) {
+          this.column = column;
+          this.row = row;
+          return true;
+        }
+       } else {
+        return false;
+       }
+      return true;
+    } else if(state[column][row].getPiece().getTeam() != this.team){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   
@@ -44,7 +59,7 @@ public class Piece {
   }
 
   public boolean getTeam() {
-    return this.Team;
+    return this.team;
   }
 
   

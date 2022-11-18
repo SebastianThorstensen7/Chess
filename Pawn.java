@@ -21,7 +21,7 @@ public class Pawn extends Piece{
   }
 
   //validate move method for pawn
-  public boolean validateMove(int x, int y) {
+  public boolean validateMove(int column, int row, Square[][] State) {
     return true;
   }
 
