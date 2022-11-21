@@ -20,8 +20,8 @@ public class Queen extends Piece{
   }
 
   //Validate move method for Queen
-  public boolean validateMove(int x, int y) {
-    return true;
+  public boolean validateMove(int row, int column, Square[][] state) {
+    return super.validateMove(row,column,state);
   }
 
   public String toString() {

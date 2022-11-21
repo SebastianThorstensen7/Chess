@@ -14,15 +14,10 @@ public class Pawn extends Piece{
     this.x = x;
     this.y = y;
   }
-  
-  public void move(Scanner scn){
-    super.move(scn);
-    System.out.println("Pawn move");
-  }
 
   //validate move method for pawn
-  public boolean validateMove(int column, int row, Square[][] State) {
-    return true;
+  public boolean validateMove(int row, int column, Square[][] state) {
+    return super.validateMove(row,column,state);
   }
 
   public String toString() {

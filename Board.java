@@ -48,7 +48,7 @@ public class Board {
         if(response.contains(",")) {
           int column = Integer.parseInt(response.substring(response.indexOf(",") + 1)) - 1;
           int row = Integer.parseInt(response.substring(0, response.indexOf(","))) - 1;
-          if(p.getRow() == row && p.getColumn() == column) {
+          if((p.getRow() == row && p.getColumn() == column) && currentTeam == p.getTeam()) {
             return p;
           }
         }

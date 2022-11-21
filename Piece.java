@@ -24,7 +24,7 @@ public class Piece {
 
   // validate move method
   public boolean validateMove(int row, int column, Square[][] state) {
-    if (state[column][row].isNotOccupied()) {
+    if (state[row][column].isNotOccupied()) {
       if (this.column != column && this.row != row) {
         if ((this.column + 1 == column) || (this.column - 1 == column)) {
           if ((this.row + 1 == row) || (this.row - 1 == row )) {
@@ -49,14 +49,18 @@ public class Piece {
         } else {
           return false;
         }
+      } else {
+        return false;
       }
-
-      return true;
-    } else if (state[column][row].getPiece().getTeam() != this.team) {
-      return true;
     } else {
-      return false;
+      Piece p = state[row][column].getPiece();
+      if(p.getTeam() != this.team) {
+        return true;
+      } else {
+        return false;
+      }
     }
+    return true;
   }
 
   public int getRow() {
