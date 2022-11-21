@@ -16,6 +16,7 @@ public class Bishop extends Piece {
   Piece bishop;
   Scanner scn;
   ArrayList<Piece> Pieces;
+  Board board;
 
   public Bishop(Boolean Team, String pieceID, int row, int column, ArrayList<Piece> Pieces) {
     super(Team, pieceID, row, column);
@@ -25,64 +26,46 @@ public class Bishop extends Piece {
     this.column = column;
     scn = new Scanner(System.in);
     this.Pieces = Pieces;
-    // move(scn);
-    /*
-     * for(int k = 0; k < 2; k++){
-     * this.bishop = new Piece(true, "B" + k, 0, (k * 3) + 2);
-     * }
-     */
+    this.board = board;
   }
 
   public void move(Scanner scn) {
     super.move(scn);
+    board = new Board(Pieces);
     System.out.println("Bishop move");
   }
 
-  private double getSlope(double x, double y) {
+  private String getSlope(double x, double y) {
     double slope = Math.abs((double) ((y - column) / (x - row)));
     System.out.println(slope);
-    return slope;
+    return slope + "";
   }
 
   // Validate move method for bishop
-  public boolean validateMove(int x, int y, int[][] piecePos) {
-    // If the slope is 1 or -1
-    if (this.getSlope(x, y) != 1.0) {
-      System.out.println("Not a valid move cause slope");
-      return false;
-    }
-    // Sees if the move is outside the box
-    else if (x < 0 || y < 0 || x > 7 || y > 7) {
-      System.out.println("Not a valid move");
-      return false;
-    }
+  public boolean validateMove(int x, int y, Square[][] state) {
+    System.out.println("Move method is being called");
 
-    // check if path is blocked
-
-    // get path distance...
-    int distance = Math.abs(y - column);
-
-    for (int i = 0; i < distance; i++) {
-      int testX = row;
-      int testY = column;
-      if (Math.abs(getSlope(x, y)) == 1) {
-        for (int j = 0; j < Pieces.size(); j++) {
-          if (Math.abs(getSlope(Pieces.get(j).getRow(), Pieces.get(j).getColumn())) == 1) {
+    if (state[x][y].isNotOccupied()) {
+      if (this.row == x && this.column == y) {
+        System.out.println("Thats the same spot its in(invalide move)");
+        return false;
+      }
+      else if ((x > 0 && x <= 8) || (y > 0 && y <= 8)) {
+      if (this.getSlope(x, y).equals("1.0")) {
+        for (int i = 0; i < x; i++) {
+          for(int j = 0; j < y; j++){
+            if (state[i][j].isNotOccupied() == false) {
+            System.out.println("occupied in between");
             return false;
           }
+          }
         }
+        System.out.println(getSlope(x, y));
+        System.out.println("Valid move");
       }
     }
-
-    for (int i = 0; i < piecePos.length; i++) {
-      for (int j = 0; j < piecePos[i].length; j++) {
-        if (piecePos[i][j] != x && piecePos[i][j + 1] != y) {
-          return false;
-        }
-      }
-    }
-
-    return true;
+    } 
+  return true;
   }
 
   public String toString() {

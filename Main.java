@@ -37,16 +37,10 @@ class Main {
     pieces.add(new King(false, "K", 7, 4));
     pieces.add(new Queen(false, "Q", 7, 3));
 
-   //Chessgame standardGame = new Chessgame(pieces);
-   //standardGame.play();
+   Chessgame standardGame = new Chessgame(pieces);
+   standardGame.play();
 
-    
-    ArrayList<Piece> kingtest = new ArrayList<Piece>();
-    kingtest.add(new King(false,"K",5,4));
-    kingtest.add(new King(true,"K",4,5));
 
-    Chessgame kingTest = new Chessgame(kingtest);
-    kingTest.play();
     
   }
 }
