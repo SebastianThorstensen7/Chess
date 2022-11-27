@@ -38,7 +38,7 @@ public class Rook extends Piece {
         return false;
       } 
       else if (this.row != x && this.column == y) {
-        for (int i =0; i<x; i++){
+        for (int i =0; i < x; i++){
           if (state[i][y].isNotOccupied() == false){
             System.out.println("occupied in between");
             return false;

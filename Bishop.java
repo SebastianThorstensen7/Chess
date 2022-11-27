@@ -37,35 +37,59 @@ public class Bishop extends Piece {
 
   private String getSlope(double x, double y) {
     double slope = Math.abs((double) ((y - column) / (x - row)));
-    System.out.println(slope);
     return slope + "";
   }
 
   // Validate move method for bishop
   public boolean validateMove(int x, int y, Square[][] state) {
     System.out.println("Move method is being called");
+    int yDistance = Math.abs(y - column);
 
-    if (state[x][y].isNotOccupied()) {
-      if (this.row == x && this.column == y) {
-        System.out.println("Thats the same spot its in(invalide move)");
-        return false;
-      }
-      else if ((x > 0 && x <= 8) || (y > 0 && y <= 8)) {
+    if (this.row == x && this.column == y) {
+      System.out.println("Thats the same spot its in(invalide move)");
+      return false;
+    }
+
+    else if ((x > 0 && x <= 8) || (y > 0 && y <= 8)) {
+      int xInt = (row+1);
+      int yInt = (column+1);
+
       if (this.getSlope(x, y).equals("1.0")) {
-        for (int i = 0; i < x; i++) {
-          for(int j = 0; j < y; j++){
-            if (state[i][j].isNotOccupied() == false) {
+        for (int i = 0; i < yDistance; i++) {
+          if(x < row && y > column){
+            xInt --;
+            yInt ++;
+          }
+          else if(x < row && y < column){
+            xInt --;
+            yInt --;
+          }
+          else if(x > row && y > column){
+            xInt ++;
+            yInt ++;
+          }
+          else if(x > row && y < column){
+            xInt ++;
+            yInt --;
+          }
+
+          if (state[xInt][yInt].isNotOccupied() == false) {
             System.out.println("occupied in between");
             return false;
           }
-          }
         }
-        System.out.println(getSlope(x, y));
         System.out.println("Valid move");
       }
+      else if(!this.getSlope(x, y).equals("1.0")){
+        System.out.println("Not a diagonal move");
+        return false;
+      }
     }
-    } 
-  return true;
+    else if(!(x > 0 && x <= 8) || !(y > 0 && y <= 8)){
+      System.out.println("This is outside the board");
+      return false;
+    }
+    return true;
   }
 
   public String toString() {

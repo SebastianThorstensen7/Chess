@@ -38,9 +38,6 @@ class Main {
     pieces.add(new Queen(false, "Q", 7, 3));
 
    Chessgame standardGame = new Chessgame(pieces);
-   standardGame.play();
-
-
-    
+   standardGame.play();    
   }
 }
