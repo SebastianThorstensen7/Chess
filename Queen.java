@@ -22,32 +22,32 @@ public class Queen extends Piece{
   //Validate move method for Queen
   public boolean validateMove(int row, int column, Square[][] state) {
     System.out.println("Move method is being called");
-    int yDistance = Math.abs(y - column);
+    int yDistance = Math.abs(column - this.column);
 
-    if (this.row == x && this.column == y) {
+    if (this.row == row && this.column == column) {
       System.out.println("Thats the same spot its in(invalide move)");
       return false;
     }
 
-    else if ((x > 0 && x <= 8) || (y > 0 && y <= 8)) {
+    else if ((row > 0 && row <= 8) || (column > 0 && column <= 8)) {
       int xInt = (row+1);
       int yInt = (column+1);
 
-      if (this.getSlope(x, y).equals("1.0")) {
+      if (this.getSlope(row, column).equals("1.0")) {
         for (int i = 0; i < yDistance; i++) {
-          if(x < row && y > column){
+          if(row < row && column > column){
             xInt --;
             yInt ++;
           }
-          else if(x < row && y < column){
+          else if(row < row && column < column){
             xInt --;
             yInt --;
           }
-          else if(x > row && y > column){
+          else if(row > row && column > column){
             xInt ++;
             yInt ++;
           }
-          else if(x > row && y < column){
+          else if(row > row && column < column){
             xInt ++;
             yInt --;
           }
@@ -59,33 +59,33 @@ public class Queen extends Piece{
         }
         System.out.println("Valid move");
       }
-      else if(!this.getSlope(x, y).equals("1.0")){
+      else if(!this.getSlope(row, column).equals("1.0")){
         System.out.println("Not a diagonal move");
         return false;
       }
     }
-    else if(!(x > 0 && x <= 8) || !(y > 0 && y <= 8)){
+    else if(!(row > 0 && column <= 8) || !(column > 0 && column <= 8)){
       System.out.println("This is outside the board");
       return false;
     }
-        if (state[x][y].isNotOccupied()) {
-      if (this.row != x && this.column != y) {
+        if (state[row][column].isNotOccupied()) {
+      if (this.row != row && this.column != column) {
         System.out.println("both are different");
         return false;
       } 
-      else if (this.row != x && this.column == y) {
-        for (int i =0; i < x; i++){
-          if (state[i][y].isNotOccupied() == false){
+      else if (this.row != row && this.column == column) {
+        for (int i =0; i < row; i++){
+          if (state[i][column].isNotOccupied() == false){
             System.out.println("occupied in between");
             return false;
           }
-          else if (x-1 == i){
-            this.row = x;
+          else if (row-1 == i){
+            this.row = row;
             return true;
           }
           
          }
-        this.row = x;
+        this.row = row;
         return true;
         }
       else {
@@ -94,21 +94,26 @@ public class Queen extends Piece{
        
       } 
       
-      else if (this.row == x && this.column != y) {
+      else if (this.row == row && this.column != column) {
         
-        for (int i =0; i<y; i++){
-          if (state[x][i].isNotOccupied() == false){
+        for (int i =0; i<column; i++){
+          if (state[row][i].isNotOccupied() == false){
             System.out.println("occupied in between part 2");
             return false;
           }
         }
-        this.column = y;
+        this.column = column;
        return true;
       } 
       else {
-        this.column = y;
+        this.column = column;
         return true;
       }
+  }
+
+  private String getSlope(double x, double y) {
+    double slope = Math.abs((double) ((y - column) / (x - row)));
+    return slope + "";
   }
 
   public String toString() {

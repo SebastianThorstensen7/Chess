@@ -4,17 +4,11 @@ public class Square {
   private String symbol;
 
   public Square() {
-    this.symbol = " ";
-  }
-
-  public Square(Piece p) {
-    this.piece = p;
-    this.symbol = p.toString();
+    this.piece = null;
   }
 
   public void setPiece(Piece p) {
     this.piece = p;
-    this.symbol = p.toString();
   }
 
   public String getSymbol() {
@@ -26,7 +20,7 @@ public class Square {
   }
 
   public boolean isNotOccupied() {
-    if (this.symbol.equals(" ")) {
+    if (this.piece == null) {
       return true;
     } else {
       return false;
@@ -34,6 +28,11 @@ public class Square {
   }
 
   public String toString() {
+    if(piece == null) {
+      this.symbol = " ";
+    } else {
+      this.symbol = piece.toString();
+    }
     return "[ " + symbol + " ]";
   }
 

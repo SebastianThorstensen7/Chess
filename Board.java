@@ -73,20 +73,14 @@ public class Board {
       if (response.equals("back")) {
         p = this.selectPiece();
       } else {
-        int column = Integer.parseInt(response.substring(0, response.indexOf(","))) - 1;
-        int row = Integer.parseInt(response.substring(response.indexOf(",") + 1)) - 1;
-        Boolean valid = p.validateMove(column, row, state);
+        int row = Integer.parseInt(response.substring(0, response.indexOf(","))) - 1;
+        int column = Integer.parseInt(response.substring(response.indexOf(",") + 1)) - 1;
+        Boolean valid = p.validateMove(row, column, state);
         if (valid) {
-          if(state[row][column].isNotOccupied()) {
-          p.row = column;
-          p.column = row;
+          p.row = row;
+          p.column = column;
+          this.takePiece(p);
           invalidMove = false;
-          } else {
-            p.row = column;
-            p.column = row;
-            this.takePiece(p);
-            invalidMove = false;
-          }
         } 
         else if (valid == false){
           System.out.println("Invaild Move");

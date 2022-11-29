@@ -32,35 +32,25 @@ public class Piece {
             this.row = row;
             return true;
           }
-        } else {
-          return false;
-        }
+        } 
       } else if((this.column != column) && (this.row == row) ) {
         if(this.column + 1 == column || this.column - 1 == column) {
           this.column = column;
           return true;
-        } else {
-          return false;
-        }
+        } 
       } else if((this.column == column) && (this.row != row)) {
         if ((this.row + 1 == row) || (this.row - 1 == row )) {
             this.row = row;
             return true;
-        } else {
-          return false;
-        }
-      } else {
-        return false;
-      }
+        } 
+      } 
     } else {
       Piece p = state[row][column].getPiece();
       if(p.getTeam() != this.team) {
         return true;
-      } else {
-        return false;
-      }
+      } 
     }
-    return true;
+    return false;
   }
 
   public int getRow() {
