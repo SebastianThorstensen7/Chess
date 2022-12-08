@@ -1,4 +1,8 @@
+package edu.bothellhighschool.Chess;
 import java.util.ArrayList;
+
+
+
 public class Chessgame {
 
   Board Board;
@@ -15,11 +19,18 @@ public class Chessgame {
       this.Board.move();
       this.Board.updateState();
       this.Board.switchTeam();
-      checkmate = winValidation();
+      checkmate = checkMate();
     }
   }
 
-  public boolean winValidation() {
+  public boolean checkMate() {
+    return false;
+  }
+
+  public boolean check() {
+    for(Piece p: chessPieces) {
+      
+    }
     return false;
   }
   

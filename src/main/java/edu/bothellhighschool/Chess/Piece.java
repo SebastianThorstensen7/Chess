@@ -1,3 +1,4 @@
+package edu.bothellhighschool.Chess;
 import java.util.Scanner;
 
 public class Piece {

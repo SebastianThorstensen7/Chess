@@ -7,7 +7,7 @@
 // am responsible for move validation
 
 // this.x = original
-
+package edu.bothellhighschool.Chess;
 import java.util.Scanner;
 
 public class Rook extends Piece {

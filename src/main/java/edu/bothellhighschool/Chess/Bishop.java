@@ -3,8 +3,9 @@
 //10/24/2022
 //P3
 //I will be making changes to this file
-
+package edu.bothellhighschool.Chess;
 import java.util.*;
+
 
 public class Bishop extends Piece {
 

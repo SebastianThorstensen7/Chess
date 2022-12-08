@@ -1,4 +1,7 @@
+package edu.bothellhighschool.Chess;
 import java.util.*;
+
+
 
 public class Board {
 

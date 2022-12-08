@@ -1,4 +1,6 @@
+package edu.bothellhighschool.Chess;
 import java.util.Scanner;
+
 public class King extends Piece{
 
   Boolean    team;

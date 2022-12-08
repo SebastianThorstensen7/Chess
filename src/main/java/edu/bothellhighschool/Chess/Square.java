@@ -1,3 +1,5 @@
+package edu.bothellhighschool.Chess;
+
 public class Square {
 
   private Piece piece;
