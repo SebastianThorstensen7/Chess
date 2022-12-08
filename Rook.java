@@ -36,45 +36,62 @@ public class Rook extends Piece {
       if (this.row != x && this.column != y) {
         System.out.println("both are different");
         return false;
-      } 
-      else if (this.row != x && this.column == y) {
-        for (int i =0; i < x; i++){
-          if (state[i][y].isNotOccupied() == false){
-            System.out.println("occupied in between");
-            return false;
+      } else if (this.row != x && this.column == y) {
+        if (row < x) {
+          for (int i = row; i < x; i++) {
+            if (state[i][y].isNotOccupied() == false) {
+              System.out.println("occupied in between");
+              return false;
+            } else if (x - 1 == i) {
+              this.row = x;
+              return true;
+            }
           }
-          else if (x-1 == i){
-            this.row = x;
-            return true;
+        } else if (row > x) {
+          for (int i = row; i > x; i--) {
+            if (state[i][y].isNotOccupied() == false) {
+              System.out.println("occupied in between");
+              return false;
+            } else if (x - 1 == i) {
+              this.row = x;
+              return true;
+            }
+
           }
-          
-         }
+        }
+
         this.row = x;
         return true;
-        }
-      else {
+      } else {
         return true;
       }
-       
-      } 
-      
-      else if (this.row == x && this.column != y) {
-        
-        for (int i =0; i<y; i++){
-          if (state[x][i].isNotOccupied() == false){
+
+    }
+
+    else if (this.row == x && this.column != y) {
+      if (column > y) {
+        for (int i = column; i > y; i--) {
+          if (state[x][i].isNotOccupied() == false) {
             System.out.println("occupied in between part 2");
             return false;
           }
         }
-        this.column = y;
-       return true;
-      } 
-      else {
-        this.column = y;
-        return true;
+      } else if (column < y) {
+        for (int i = column; i < y; i++) {
+          if (state[x][i].isNotOccupied() == false) {
+            System.out.println("occupied in between part 2");
+            return false;
+          }
+        }
       }
-  
-    
+
+      this.column = y;
+      return true;
+    } else {
+      this.column = y;
+      return true;
+    }
+
   }
 
   public String toString() {
@@ -85,4 +102,3 @@ public class Rook extends Piece {
     }
   }
 }
-
