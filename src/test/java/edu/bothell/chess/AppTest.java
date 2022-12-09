@@ -1,4 +1,4 @@
-package edu.bothellhighschool.Chess;
+package edu.bothell.chess;
 
 import static org.junit.Assert.assertTrue;
 

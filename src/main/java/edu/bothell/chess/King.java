@@ -1,4 +1,4 @@
-package edu.bothellhighschool.Chess;
+package edu.bothell.chess;
 import java.util.Scanner;
 
 public class King extends Piece{

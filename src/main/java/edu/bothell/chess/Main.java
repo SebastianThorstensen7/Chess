@@ -6,7 +6,7 @@
 /*
 This is chess. Currently all pieces can be moved with some having move validation being worked, pieces can be taken and stored away, and you can now select a piece by feeding the console the coordinates instead of being forced to use the pieces ID. Next step is probably more move validation and then making the logic for check and check mate.
 */
-package edu.bothellhighschool.Chess;
+package edu.bothell.chess;
 
 import java.util.ArrayList;
 

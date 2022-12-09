@@ -8,6 +8,7 @@
 
 // this.x = original
 
+package edu.bothell.chess;
 import java.util.Scanner;
 
 public class Rook extends Piece {
