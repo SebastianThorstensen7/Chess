@@ -24,24 +24,21 @@ public class Piece {
   }
 
   // validate move method
+  // Super method is king movement
   public boolean validateMove(int row, int column, Square[][] state) {
     if (state[row][column].isNotOccupied()) {
       if (this.column != column && this.row != row) {
         if ((this.column + 1 == column) || (this.column - 1 == column)) {
           if ((this.row + 1 == row) || (this.row - 1 == row )) {
-            this.column = column;
-            this.row = row;
             return true;
           }
         } 
       } else if((this.column != column) && (this.row == row) ) {
         if(this.column + 1 == column || this.column - 1 == column) {
-          this.column = column;
           return true;
         } 
       } else if((this.column == column) && (this.row != row)) {
         if ((this.row + 1 == row) || (this.row - 1 == row )) {
-            this.row = row;
             return true;
         } 
       } 
@@ -54,8 +51,16 @@ public class Piece {
     return false;
   }
 
+  public void setRow(int row) {
+    this.row = row;
+  }
+
   public int getRow() {
     return this.row;
+  }
+
+  public void setColumn(int column) {
+    this.column = column;
   }
 
   public int getColumn() {

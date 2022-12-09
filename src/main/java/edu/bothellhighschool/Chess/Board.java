@@ -80,8 +80,8 @@ public class Board {
         int column = Integer.parseInt(response.substring(response.indexOf(",") + 1)) - 1;
         Boolean valid = p.validateMove(row, column, state);
         if (valid) {
-          p.row = row;
-          p.column = column;
+          p.setRow(row);
+          p.setColumn(column);
           this.takePiece(p);
           invalidMove = false;
         } 

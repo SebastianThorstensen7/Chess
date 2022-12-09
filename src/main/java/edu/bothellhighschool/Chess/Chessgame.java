@@ -28,7 +28,8 @@ public class Chessgame {
   }
 
   public boolean check() {
-    for(Piece p: chessPieces) {
+    
+    for(Piece p: this.Board.Pieces) {
       
     }
     return false;
