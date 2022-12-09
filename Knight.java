@@ -1,3 +1,13 @@
+// khushi singh
+// 12.08.2022
+// p.3
+// team chess 
+
+// i own knight
+// am responsible for move validation
+
+// this.x = original
+
 import java.util.Scanner;
 public class Knight extends Piece{
 

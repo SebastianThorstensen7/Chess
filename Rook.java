@@ -37,6 +37,7 @@ public class Rook extends Piece {
         System.out.println("both are different");
         return false;
       } else if (this.row != x && this.column == y) {
+        // fixed bug
         if (row < x) {
           for (int i = row; i < x; i++) {
             if (state[i][y].isNotOccupied() == false) {
@@ -69,6 +70,7 @@ public class Rook extends Piece {
     }
 
     else if (this.row == x && this.column != y) {
+      // fixed bug
       if (column > y) {
         for (int i = column; i > y; i--) {
           if (state[x][i].isNotOccupied() == false) {
