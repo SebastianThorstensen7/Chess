@@ -1,5 +1,5 @@
-edu/bothell/chess/Square.class
 edu/bothell/chess/Rook.class
+edu/bothell/chess/Square.class
 edu/bothell/chess/Knight.class
 edu/bothell/chess/Main.class
 edu/bothell/chess/Pawn.class

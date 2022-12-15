@@ -18,6 +18,8 @@ public class Bishop extends Piece {
   Scanner scn;
   ArrayList<Piece> Pieces;
   Board board;
+  int xDistance;
+  int yDistance;
 
   public Bishop(Boolean Team, String pieceID, int row, int column, ArrayList<Piece> Pieces) {
     super(Team, pieceID, row, column);
@@ -28,6 +30,8 @@ public class Bishop extends Piece {
     scn = new Scanner(System.in);
     this.Pieces = Pieces;
     this.board = board;
+    this.xDistance = xDistance;
+    this.yDistance = yDistance;
   }
 
   public void move(Scanner scn) {
@@ -36,60 +40,50 @@ public class Bishop extends Piece {
     System.out.println("Bishop move");
   }
 
-  private String getSlope(double x, double y) {
-    double slope = Math.abs((double) ((y - column) / (x - row)));
-    return slope + "";
+  private double getSlope(double x, double y) {
+    double slope = Math.abs((double) (y - column) / (x - row));
+    return slope;
   }
 
   // Validate move method for bishop
   public boolean validateMove(int x, int y, Square[][] state) {
     System.out.println("Move method is being called");
-    int yDistance = Math.abs(y - column);
+      xDistance = x - row;
+      yDistance = y - column;
+    System.out.println(xDistance);
+    System.out.println(yDistance);
+      int xInt = row;
+      int yInt = column;
 
-    if (this.row == x && this.column == y) {
-      System.out.println("Thats the same spot its in(invalide move)");
-      return false;
-    }
-
-    else if ((x > 0 && x <= 8) || (y > 0 && y <= 8)) {
-      int xInt = (row+1);
-      int yInt = (column+1);
-
-      if (this.getSlope(x, y).equals("1.0")) {
-        for (int i = 0; i < yDistance; i++) {
-          if(x < row && y > column){
+      if (this.getSlope(x, y) == 1.0) {
+        for (int i = 0; i < Math.abs(yDistance); i++) {
+          if(xDistance < 0 && yDistance > 0){
             xInt --;
             yInt ++;
           }
-          else if(x < row && y < column){
+          else if(xDistance < 0 && yDistance < 0){
             xInt --;
             yInt --;
           }
-          else if(x > row && y > column){
+          else if(xDistance > 0 && yDistance > 0){
             xInt ++;
             yInt ++;
           }
-          else if(x > row && y < column){
+          else if(xDistance > 0 && yDistance < 0){
             xInt ++;
             yInt --;
           }
-
-          if (state[xInt][yInt].isNotOccupied() == false) {
-            System.out.println("occupied in between");
-            return false;
-          }
+           else if (state[xInt][yInt].isNotOccupied() == false) {
+          System.out.println("occupied in between");
+          return false;
         }
-        System.out.println("Valid move");
+        }
       }
-      else if(!this.getSlope(x, y).equals("1.0")){
+      else if((this.getSlope(x, y)) != 1.0){
         System.out.println("Not a diagonal move");
         return false;
       }
-    }
-    else if(!(x > 0 && x <= 8) || !(y > 0 && y <= 8)){
-      System.out.println("This is outside the board");
-      return false;
-    }
+
     return true;
   }
 
