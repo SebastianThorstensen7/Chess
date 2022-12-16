@@ -10,10 +10,6 @@ public class Knight extends Piece{
   
   public Knight(Boolean Team, String pieceID, int row, int column){
     super(Team,pieceID,row,column);
-    this.Team = Team;
-    this.pieceID = pieceID;
-    this.row = row;
-    this.column = column;
   }
   
   public void move(Scanner scn){
@@ -24,20 +20,17 @@ public class Knight extends Piece{
   //validate move method for Knight
   public boolean validateMove (int x, int y, Square[][] state) {
     if (state[x][y].isNotOccupied() == true){
-      if (this.column + 2 == y || this.column - 2 == y){
-        if (this.row + 1 == x || this.row - 1 == x){
-          this.column = y;
-          this.row = x;
+      if (super.column + 2 == y || super.column - 2 == y){
+        if (super.row + 1 == x || super.row - 1 == x){
           return true;
         }
         else {
           return false;
         }
       }
-      else if (this.column + 1 == y || this.column - 1 == y){
-        if (this.row + 2 == x || this.row - 2 == x){
-          this.column = y;
-          this.row = x;
+      else if (super.column + 1 == y || super.column - 1 == y){
+        if (super.row + 2 == x || super.row - 2 == x){
+          
           return true;
         }
         else {
@@ -45,20 +38,18 @@ public class Knight extends Piece{
         }
       }
 
-      else if (this.row + 1 == x || this.row - 1 == x){
-        if (this.column + 2 == y || this.column - 2 == y){
-          this.row = x; 
-          this.column = y;
+      else if (super.row + 1 == x || super.row - 1 == x){
+        if (super.column + 2 == y || super.column - 2 == y){
+          
           return true;
         }
         else {
           return false;
         }
       }
-      else if (this.row + 2 == x || this.row - 2 == x){
-        if(this.column + 1 == y || this.column - 1 == y){
-          this.row = x; 
-          this.column = y;
+      else if (super.row + 2 == x || super.row - 2 == x){
+        if(super.column + 1 == y || super.column - 1 == y){
+          
           return true;
         }
         else {
@@ -66,7 +57,7 @@ public class Knight extends Piece{
         }
       }
       else {
-        System.out.println("nothing valid");
+        
         return false;
       }
     }
@@ -78,7 +69,7 @@ public class Knight extends Piece{
   }
 
   public String toString() {
-    if(Team) {
+    if(super.getTeam()) {
       return "♘";
     } else {
       return "♞";

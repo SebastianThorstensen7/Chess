@@ -7,14 +7,10 @@ public class Queen extends Piece{
   String     pieceID;
   int        row;
   int        column;
-  int yDistance;
+  int        yDistance;
   
   public Queen(Boolean Team, String pieceID, int row, int column){
     super(Team,pieceID,row,column);
-    this.Team = Team;
-    this.pieceID = pieceID;
-    this.row = row;
-    this.column = column;
   }
   
   public void move(Scanner scn){
@@ -69,7 +65,7 @@ private double getSlope(int x, int y) {
   }
 
   public String toString() {
-    if(Team) {
+    if(super.getTeam()) {
       return "♕";
     } else {
       return "♛";

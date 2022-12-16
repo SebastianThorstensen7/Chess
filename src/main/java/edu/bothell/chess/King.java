@@ -10,10 +10,6 @@ public class King extends Piece{
   
   public King(Boolean Team, String pieceID, int row, int column){
     super(Team,pieceID,row,column);
-    this.team = Team;
-    this.pieceID = pieceID;
-    this.row = row;
-    this.column = column;
   }
 
   public void move(Scanner scn){
@@ -27,7 +23,7 @@ public class King extends Piece{
   }
 
   public String toString() {
-    if(team) {
+    if(super.getTeam()) {
       return "♔";
     } else {
       return "♚";
