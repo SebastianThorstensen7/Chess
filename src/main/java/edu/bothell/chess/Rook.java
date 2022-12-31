@@ -9,6 +9,7 @@
 // this.x = original
 
 package edu.bothell.chess;
+
 import java.util.Scanner;
 
 public class Rook extends Piece {
@@ -31,13 +32,11 @@ public class Rook extends Piece {
   public boolean validateMove(int x, int y, Square[][] state) {
     if (state[x][y].isNotOccupied()) {
       if (super.row != x && super.column != y) {
-        System.out.println("both are different");
         return false;
       } else if (super.row != x && super.column == y) {
         if (row < x) {
           for (int i = super.row; i < x; i++) {
             if (state[i][y].isNotOccupied() == false) {
-              System.out.println("occupied in between");
               return false;
             } else if (x - 1 == i) {
               return true;
@@ -46,15 +45,12 @@ public class Rook extends Piece {
         } else if (super.row > x) {
           for (int i = super.row; i > x; i--) {
             if (state[i][y].isNotOccupied() == false) {
-              System.out.println("occupied in between");
               return false;
             } else if (x - 1 == i) {
               return true;
             }
           }
         }
-
-
         return true;
       } else {
         return true;
@@ -66,7 +62,6 @@ public class Rook extends Piece {
       if (super.column > y) {
         for (int i = super.column; i > y; i--) {
           if (state[x][i].isNotOccupied() == false) {
-            System.out.println("occupied in between part 2");
             return false;
           }
         }
