@@ -20,7 +20,14 @@ public class Bishop extends Piece {
   Board board;
   int xDistance;
   int yDistance;
-
+  
+  //////////////////////////////////////////////////////////
+  // BETTER CONSTRUCTOR FOR BISHOP!!!!!
+  //////////////////////////////////////////////////////////
+  public Bishop(boolean team, int column, int row, B board){
+    super(team, column, row, board);
+  }
+  
   public Bishop(Boolean Team, String pieceID, int row, int column, ArrayList<Piece> Pieces) {
     super(Team, pieceID, row, column);
     scn = new Scanner(System.in);

@@ -9,7 +9,11 @@ public class Pawn extends Piece {
   String pieceID;
   int row;
   int column;
-
+  
+  public Pawn(boolean team, int column, int row, B board){
+    super(team, column, row, board);
+  }
+  
   public Pawn(Boolean Team, String pieceID, int x, int y) {
     super(Team, pieceID, x, y);
     this.firstMove = true;

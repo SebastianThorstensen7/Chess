@@ -5,6 +5,7 @@ edu/bothell/chess/Main.class
 edu/bothell/chess/Pawn.class
 edu/bothell/chess/Queen.class
 edu/bothell/chess/Piece.class
+edu/bothell/chess/B.class
 edu/bothell/chess/Chessgame.class
 edu/bothell/chess/Board.class
 edu/bothell/chess/King.class

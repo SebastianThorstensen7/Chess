@@ -14,12 +14,16 @@ import java.util.Scanner;
 
 public class Rook extends Piece {
 
-  Boolean Team;
+  boolean Team;
   String pieceID;
   int row;
   int column;
 
-  public Rook(Boolean Team, String pieceID, int row, int column) {
+  public Rook(boolean team, int column, int row, B board){
+    super(team, column, row, board);
+  }
+  
+  public Rook(boolean Team, String pieceID, int row, int column) {
     super(Team, pieceID, row, column);
   }
 

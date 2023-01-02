@@ -13,6 +13,11 @@ import java.util.ArrayList;
 class Main {
   public static void main(String[] args) {
     System.out.println("CHESS");
+    doIt();
+  }
+  
+  public static void doIt() {
+    System.out.println("CHESS");
 
     ArrayList<Piece> pieces = new ArrayList<Piece>();
 

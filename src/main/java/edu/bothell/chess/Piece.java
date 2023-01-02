@@ -4,21 +4,63 @@ import java.util.Scanner;
 public class Piece {
   // Fields -- or state variables
   // what our Piece has
-  Boolean team;
-  String pieceID;
+  boolean team;
+  String pieceID = "Is this necissary?"; //TODO: Do you need this?
   int row;
   int column;
+  B state;
 
   // Constructor
-  public Piece(Boolean Team, String pieceID, int row, int column) {
-    this.team = Team;
+  public Piece(boolean team, String pieceID, int row, int column) {
+    this.team = team;
     this.pieceID = pieceID;
     this.row = row;
     this.column = column;
   }
 
-  // Methods -- or functions ==> what our class can do
+  /**
+   * GUS: New constructore for a Piece -- adding a board and removing the ID
+   * rows and columns seem backwards to me?
+   * @param  team    boolean  
+   * @param  row     int
+   * @param  column  int
+   * @param  board   Board type with Square[][] and ArrayList<Piece>
+   */
+  public Piece(boolean Team, int column, int row, B state) {
+    this.team = Team;
+    this.column = column;
+    this.row = row;
+    this.state = state;
+  }
 
+  
+  ///////////////////////////////////////////////
+  // METHODS of CHESS PIECE(s)
+  ///////////////////////////////////////////////
+  /**
+   * GUS: Starts the process of checking a move. 
+   * Can Override for specific pieces
+   * @param  x    X marks the spot of the Square to move to
+   * @retrun boolean saying if the move is OK
+   */
+  public boolean checkMove(Square x){
+    // TODO: This does not check if pieces are in between.
+    // That needs a new method that will check the spaces between.
+    // basing on Queen....
+    
+    // moving to square occupied by the same team is always no good...
+    if( x.isTeam(team) ) return false;
+
+    // moving like a rook...
+    if(x.getRow() == row || x.getColumn() == column) return true;
+
+    // moving like a bishop
+    if( Math.abs((x.getRow() - row) / (x.getColumn() - column)) == 1) return true;
+
+    return false;
+  }
+
+  
   public void move(Scanner scn) {
 
   }

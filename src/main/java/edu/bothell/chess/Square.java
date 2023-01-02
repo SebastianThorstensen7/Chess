@@ -4,11 +4,38 @@ public class Square {
 
   private Piece piece;
   private String symbol;
+  private int x;
+  private int y;
 
   public Square() {
     this.piece = null;
   }
 
+  /**
+   * GUS: New constructor for Square
+   * Square needs coordinates!!!
+   * @param  x  int for column
+   * @param  y  int for row
+   */
+  public Square(int x, int y) {
+    this.piece = null;
+    this.x = x;
+    this.y = y;
+  }
+
+
+  ////////////////////////////////////////////
+  // Methods
+  ///////////////////////////////////////////
+
+  public int getColumn(){
+    return x;
+  }
+
+  public int getRow(){
+    return y;
+  }
+  
   public void setPiece(Piece p) {
     this.piece = p;
   }
@@ -21,12 +48,16 @@ public class Square {
     return this.piece;
   }
 
+  public boolean isEmpty(){
+    return this.piece == null;
+  }
+
+  public boolean isTeam(boolean team){
+    return !isEmpty() && (team == piece.getTeam());
+  }
+  
   public boolean isNotOccupied() {
-    if (this.piece == null) {
-      return true;
-    } else {
-      return false;
-    }
+    return isEmpty();
   }
 
   public String toString() {
@@ -35,7 +66,7 @@ public class Square {
     } else {
       this.symbol = piece.toString();
     }
-    return "[ " + symbol + " ]";
+    return "[ " + symbol + "  ]";
   }
 
 }
