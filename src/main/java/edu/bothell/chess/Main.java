@@ -13,7 +13,8 @@ import java.util.ArrayList;
 class Main {
   public static void main(String[] args) {
     System.out.println("CHESS");
-    doIt();
+    new B();
+    //doIt();
   }
   
   public static void doIt() {

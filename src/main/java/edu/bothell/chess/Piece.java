@@ -8,7 +8,8 @@ public class Piece {
   String pieceID = "Is this necissary?"; //TODO: Do you need this?
   int row;
   int column;
-  B state;
+  private Square square;
+  private B state;
 
   // Constructor
   public Piece(boolean team, String pieceID, int row, int column) {
@@ -60,6 +61,9 @@ public class Piece {
     return false;
   }
 
+  public void setSquare(Square square){
+    this.square = square;
+  }
   
   public void move(Scanner scn) {
 

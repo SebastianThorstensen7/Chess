@@ -185,6 +185,7 @@ public class B{
   public void commitMove(){
     pieces.remove(captured);
     activePiece.setSquare(activeSquare);
+    init();
   }
   
   /**
