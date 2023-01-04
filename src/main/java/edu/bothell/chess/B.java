@@ -19,8 +19,17 @@ public class B{
   /**
    * The two main properties of the board is the squares and the pieces on them
    */
-  private Square[][]       board  = new Square[8][8];
-  private ArrayList<Piece> pieces = new ArrayList<Piece>();
+  private Square[][]       board   = new Square[8][8];
+  private ArrayList<Piece> pieces  = new ArrayList<Piece>();
+  private ArrayList<Turn>  turns  = new ArrayList<Turn>();
+  private Player[]         players = new Player[2];
+  private String           name    = "THE CHESS GAME!";
+  private Player           activePlayer;
+  private Turn             activeTurn;
+  private Piece            activePiece;
+  private Piece            captured;
+  private Square           activeSquare;
+  private boolean          gameOver;
 
   
   ///////////////////////////////////////////////
@@ -30,6 +39,9 @@ public class B{
    * Constructs a game board
    */  
   public B(){
+    gameOver = false;
+    players[0] = new Player("Stever", true);
+    players[1] = new Player("Suezy Q", false);
     // TODO: These pieces are for testing purposes....
     pieces.add(new Bishop(true, 3, 5, this ));
     pieces.add(new Bishop(false, 2, 2, this ));
@@ -38,8 +50,18 @@ public class B{
     /////////////////////////////////////////////
     
     init();
-    draw();
-    makeMove();
+    while(!gameOver){
+      for(Player p : players){
+        activePlayer = p;
+        activeTurn = new Turn(p, this);
+        turns.add(activeTurn);
+        gameOver = activeTurn.checkMate();
+        if(gameOver) return;
+        
+      }
+    }
+    //draw();
+    //makeMove();
   }
   /**
    * Constructs a game board with specific pieces
@@ -56,6 +78,15 @@ public class B{
   ///////////////////////////////////////////////
   // METHODS of CHESS BOARD
   ///////////////////////////////////////////////
+  public boolean isCheck(){
+    return false;
+  }
+
+  public void setPieces(ArrayList<Piece> pieces){
+    this.pieces = pieces;
+    init();
+  }
+  
    /**
    * makeMove contols the UI for the player making moves.
    */
@@ -80,8 +111,7 @@ public class B{
   }
   
    /**
-   * checkMove does the work of checking the move 
-   * based on 4 coordinate numbers of the board
+   * checkMove does the work of checking the move based on 4 coordinate numbers of the board
    * @param  x1  int piece's x position
    * @param  y1  int piece's y position
    * @param  x2  int destination square x position
@@ -89,28 +119,39 @@ public class B{
    * @return  boolean  is it valid?
    */
   public boolean checkMove(int x1, int y1, int x2, int y2){
-    Piece p = null;
-    Square s = null;
+    activePiece = null;
+    activeSquare = null;
+    captured = null;
     
     try{ // get Piece to move
-      p = getPiece(x1, y1);
+      activePiece = getPiece(x1, y1);
+      if(activePlayer.getTeam() != activePiece.getTeam()) return false;
     }
     catch(Exception e){
       System.out.println("Not a valid piece!");
     }
     try{ // get destination
-      s = board[y2][x2];
+      activeSquare = board[y2][x2];
     }
     catch(Exception e){
       System.out.println("Not a valid desination");
     }
     // if either fails return false...
-    if(p == null || s == null) return false;
+    if(activePiece == null || activeSquare == null) return false;
+
+    if(!activeSquare.isEmpty()) captured = activeSquare.getPiece();
     
     // Use the piece to check its move
-    return p.checkMove(s);
+    return activePiece.checkMove(activeSquare);
   }
-
+  
+  /**
+   * @return the pieces on the board
+   */    
+  public ArrayList<Piece> getPieces(){
+    return pieces;  
+  }
+  
   /**
    * @return the squares on the board
    */    
@@ -125,6 +166,27 @@ public class B{
     return board[y][x];
   }
 
+  public Square getActiveSquare(){
+    return this.activeSquare;
+  }
+  
+  public Piece getActivePiece(){
+    return this.activePiece;
+  }
+  
+  public Piece getCaptured(){
+    return this.captured;
+  }
+
+  public void removePiece(Piece p){
+    pieces.remove(p);
+  }
+
+  public void commitMove(){
+    pieces.remove(captured);
+    activePiece.setSquare(activeSquare);
+  }
+  
   /**
    * @return Piece at x,y location
    */ 
@@ -132,7 +194,7 @@ public class B{
     return board[y][x].getPiece();
   }
 
-  /**
+   /**
    * Sets up the board with new squares and pieces in them if applicable
    */  
   public void init(){
@@ -149,10 +211,12 @@ public class B{
         
       }
     }
+
+    
   }
 
   /**
-   * Draws the board based on this object's state
+   * Draws the board based on this object's positioned player list
    */ 
   public void draw(){
     for(Square[] row : board){
