@@ -1,3 +1,4 @@
+/*
 package edu.bothell.chess;
 import java.util.*;
 
@@ -107,3 +108,4 @@ public class Board {
   }
 
 }
+*/

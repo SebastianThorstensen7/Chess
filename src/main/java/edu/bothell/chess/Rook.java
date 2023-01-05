@@ -14,10 +14,7 @@ import java.util.Scanner;
 
 public class Rook extends Piece {
 
-  boolean Team;
-  String pieceID;
-  int row;
-  int column;
+
 
   public Rook(boolean team, int column, int row, B board){
     super(team, column, row, board);
@@ -33,54 +30,15 @@ public class Rook extends Piece {
   }
 
   // validate move method for Rook
-  public boolean validateMove(int x, int y, Square[][] state) {
-    if (state[x][y].isNotOccupied()) {
-      if (super.row != x && super.column != y) {
-        return false;
-      } else if (super.row != x && super.column == y) {
-        if (row < x) {
-          for (int i = super.row; i < x; i++) {
-            if (state[i][y].isNotOccupied() == false) {
-              return false;
-            } else if (x - 1 == i) {
-              return true;
-            }
-          }
-        } else if (super.row > x) {
-          for (int i = super.row; i > x; i--) {
-            if (state[i][y].isNotOccupied() == false) {
-              return false;
-            } else if (x - 1 == i) {
-              return true;
-            }
-          }
-        }
-        return true;
-      } else {
+  public boolean validateMove(Square x,Square[][] board) {
+      boolean validMove       = false;
+      //code goes here
+      boolean noPeacesBetween = checkInbetween(board);
+      if(validMove && noPeacesBetween) {
         return true;
       }
-
+      return false;
     }
-
-    else if (super.row == x && super.column != y) {
-      if (super.column > y) {
-        for (int i = super.column; i > y; i--) {
-          if (state[x][i].isNotOccupied() == false) {
-            return false;
-          }
-        }
-      } else if (super.column < y) {
-        for (int i = super.column; i < y; i++) {
-          if (state[x][i].isNotOccupied() == false) {
-            return false;
-          }
-        }
-      }
-      return true;
-    } else {
-      return true;
-    }
-  }
 
   public String toString() {
     if (super.getTeam()) {

@@ -17,7 +17,6 @@ public class Bishop extends Piece {
   Piece bishop;
   Scanner scn;
   ArrayList<Piece> Pieces;
-  Board board;
   int xDistance;
   int yDistance;
   
@@ -28,18 +27,7 @@ public class Bishop extends Piece {
     super(team, column, row, board);
   }
   
-  public Bishop(Boolean Team, String pieceID, int row, int column, ArrayList<Piece> Pieces) {
-    super(Team, pieceID, row, column);
-    scn = new Scanner(System.in);
-    this.Pieces = Pieces;
-    this.board = board;
-  }
-
-  public void move(Scanner scn) {
-    super.move(scn);
-    board = new Board(Pieces);
-    System.out.println("Bishop move");
-  }
+ 
 
   private double getSlope(int x, int y) {
     double slope = Math.abs((double) (y - super.column) / (x - super.row));
@@ -47,41 +35,8 @@ public class Bishop extends Piece {
   }
 
   // Validate move method for bishop
-  public boolean validateMove(int x, int y, Square[][] state) {
-    System.out.println("Move method is being called");
-    this.yDistance = y - super.column;
-    System.out.println(yDistance);
-    int xInt = super.row;
-    int yInt = super.column;
-
-    if (getSlope(x, y) == 1.0) {
-      for (int i = 0; i < Math.abs(yDistance); i++) {
-        if (x < super.row && y > super.column) {
-          xInt--;
-          yInt++;
-        } else if (x < super.row && y < super.column) {
-          xInt--;
-          yInt--;
-        } else if (x > super.row && y > super.column) {
-          xInt++;
-          yInt++;
-        } else if (x > super.row && y < super.column) {
-          xInt++;
-          yInt--;
-        } else if (state[xInt][yInt].isNotOccupied() == false) {
-          System.out.println("occupied in between");
-          return false;
-        } 
-        else{
-          return true;
-        }
-      }
-    } 
-    else if (getSlope(x, y) != 1.0) {
-      System.out.println("Not a diagonal move");
-      return false;
-    }
-    return true;
+  public boolean validateMove(Square x) {
+    return super.validateMove(x);
   }
 
   public String toString() {

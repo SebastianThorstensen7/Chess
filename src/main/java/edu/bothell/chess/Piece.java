@@ -44,22 +44,6 @@ public class Piece {
    * @param  x    X marks the spot of the Square to move to
    * @retrun boolean saying if the move is OK
    */
-  public boolean checkMove(Square x){
-    // TODO: This does not check if pieces are in between.
-    // That needs a new method that will check the spaces between.
-    // basing on Queen....
-    
-    // moving to square occupied by the same team is always no good...
-    if( x.isTeam(team) ) return false;
-
-    // moving like a rook...
-    if(x.getRow() == row || x.getColumn() == column) return true;
-
-    // moving like a bishop
-    if( Math.abs((x.getRow() - row) / (x.getColumn() - column)) == 1) return true;
-
-    return false;
-  }
 
   public void setSquare(Square square){
     this.square = square;
@@ -73,30 +57,30 @@ public class Piece {
 
   // validate move method
   // Super method is king movement
-  public boolean validateMove(int row, int column, Square[][] state) {
-    if (state[row][column].isNotOccupied()) {
-      if (this.column != column && this.row != row) {
-        if ((this.column + 1 == column) || (this.column - 1 == column)) {
-          if ((this.row + 1 == row) || (this.row - 1 == row )) {
+  public boolean validateMove(Square x) {
+    if( x.isTeam(team) ) return false;
+    if (this.column != x.getColumn() && this.row != x.getRow()) {
+        if ((this.column + 1 == x.getColumn()) || (this.column - 1 == x.getColumn())) {
+          if ((this.row + 1 == x.getRow()) || (this.row - 1 == x.getRow() )) {
             return true;
           }
         } 
-      } else if((this.column != column) && (this.row == row) ) {
-        if(this.column + 1 == column || this.column - 1 == column) {
+      } else if((this.column != x.getColumn()) && (this.row == x.getRow()) ) {
+        if(this.column + 1 == x.getColumn() || this.column - 1 == x.getColumn()) {
           return true;
         } 
-      } else if((this.column == column) && (this.row != row)) {
-        if ((this.row + 1 == row) || (this.row - 1 == row )) {
+      } else if((this.column == x.getColumn()) && (this.row != x.getRow())) {
+        if ((this.row + 1 == x.getRow()) || (this.row - 1 == x.getRow() )) {
             return true;
         } 
       } 
-    } else {
-      Piece p = state[row][column].getPiece();
-      if(p.getTeam() != this.team) {
-        return true;
-      } 
-    }
     return false;
+  }
+
+  //Method to check if there a pieces between a location and destination
+  public boolean checkInbetween(Square[][] Board) {
+    
+    return true;
   }
 
   public void setRow(int row) {

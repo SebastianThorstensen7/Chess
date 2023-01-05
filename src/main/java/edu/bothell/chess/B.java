@@ -59,8 +59,8 @@ public class B{
         
         this.activePlayer = p;
         this.activeTurn = new Turn(p, this);
-        turns.add(activeTurn);
-        gameOver = activeTurn.checkMate();
+        this.turns.add(activeTurn);
+        this.gameOver = activeTurn.checkMate();
         
         if(gameOver) return;
         
@@ -148,7 +148,8 @@ public class B{
     if(!activeSquare.isEmpty()) captured = activeSquare.getPiece();
     
     // Use the piece to check its move
-    return activePiece.checkMove(activeSquare);
+    //I think we implement here
+    return activePiece.validateMove(activeSquare,this.board);
   }
   
   /**
@@ -229,6 +230,7 @@ public class B{
     for(Square[] row : board){
       for(Square s : row)
         System.out.print(s);
+      System.out.println();
       System.out.println();
     }
   }

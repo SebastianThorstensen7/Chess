@@ -18,8 +18,8 @@ public class King extends Piece{
   }
 
   //validate move method for King
-  public boolean validateMove(int row, int column, Square[][] state) {
-    return super.validateMove(row,column,state);
+  public boolean validateMove(Square x) {
+    return super.validateMove(x);
   }
 
   public String toString() {

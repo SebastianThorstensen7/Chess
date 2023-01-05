@@ -16,7 +16,8 @@ class Main {
     new B();
     //doIt();
   }
-  
+
+  /*
   public static void doIt() {
     System.out.println("CHESS");
 
@@ -48,4 +49,5 @@ class Main {
    standardGame.play();
   
   }
+  */
 }

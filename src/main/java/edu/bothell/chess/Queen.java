@@ -22,46 +22,25 @@ private double getSlope(int x, int y) {
     return slope;
   }
   //Validate move method for Queen
-  public boolean validateMove(int x, int y, Square[][] state) {
-    System.out.println("Move method is being called");
-    this.yDistance = y - super.column;
-    int xInt = super.row;
-    int yInt = super.column;
+  public boolean validateMove(Square x, Square[][] board) {
+    boolean validMove = false;
+    
+    // moving to square occupied by the same team is always no good...
+    if( x.isTeam(team) ) return false;
 
-    if (getSlope(x, y) == 1.0) {
-      for (int i = 0; i < Math.abs(yDistance); i++) {
-        if (x < super.row && y > super.column) {
-          xInt--;
-          yInt++;
-        } else if (x < super.row && y < super.column) {
-          xInt--;
-          yInt--;
-        } else if (x > super.row && y > super.column) {
-          xInt++;
-          yInt++;
-        } else if (x > super.row && y < super.column) {
-          xInt++;
-          yInt--;
-        }
-        else if(x > super.row && y == super.column){
-          xInt++;
-        }
-        else if(x < super.row && y == super.column){
-          xInt--;
-        }
-        else if(x == super.row && y > super.column){
-          yInt++;
-        }
-        else if(x == super.row && y < super.column){
-          yInt--;
-        }
+    // moving like a rook...
+    if(x.getRow() == row || x.getColumn() == column) {
+      validMove = true;
+    }
+    // moving like a bishop
+    if( Math.abs((x.getRow() - row) / (x.getColumn() - column)) == 1) {
+      validMove = true;
+    }
+    boolean noPeacesBetween = checkInbetween(board);
+    if(validMove && noPeacesBetween) {
+        return true;
       }
-    } 
-    else if (state[xInt][yInt].isNotOccupied() == false) {
-          System.out.println("occupied in between");
-          return false;
-        } 
-    return true;
+    return false;
   }
 
   public String toString() {

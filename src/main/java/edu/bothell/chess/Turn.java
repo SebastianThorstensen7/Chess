@@ -14,6 +14,7 @@ public class Turn{
 
   private Player player = new Player();
   private B board;
+  
   private boolean check;
   private boolean checkMate = false;
   private Scanner scn = new Scanner(System.in);
@@ -51,7 +52,7 @@ public class Turn{
     check();
 
     // get user input
-    while(!getValidMove()) warnInvalid();
+    while(!this.getValidMove()) this.warnInvalid();
 
     // commit move
     commit();
@@ -75,6 +76,7 @@ public class Turn{
       x1 = scn.nextInt(); y1 = scn.nextInt(); x2 = scn.nextInt(); y2 = scn.nextInt(); 
 
       valid = board.checkMove( x1, y1, x2, y2);
+    
       System.out.println("valid mode: " + valid);
 
       scn.reset();
