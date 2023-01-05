@@ -21,8 +21,10 @@ public class B{
    */
   private Square[][]       board   = new Square[8][8];
   private ArrayList<Piece> pieces  = new ArrayList<Piece>();
+  
   private ArrayList<Turn>  turns  = new ArrayList<Turn>();
   private Player[]         players = new Player[2];
+  
   private String           name    = "THE CHESS GAME!";
   private Player           activePlayer;
   private Turn             activeTurn;
@@ -50,12 +52,16 @@ public class B{
     /////////////////////////////////////////////
     
     init();
-    while(!gameOver){
-      for(Player p : players){
-        activePlayer = p;
-        activeTurn = new Turn(p, this);
+    
+    while(!this.gameOver){
+      
+      for(Player p : this.players){
+        
+        this.activePlayer = p;
+        this.activeTurn = new Turn(p, this);
         turns.add(activeTurn);
         gameOver = activeTurn.checkMate();
+        
         if(gameOver) return;
         
       }

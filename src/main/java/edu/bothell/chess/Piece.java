@@ -63,6 +63,8 @@ public class Piece {
 
   public void setSquare(Square square){
     this.square = square;
+    this.column = square.getColumn();
+    this.row = square.getRow();
   }
   
   public void move(Scanner scn) {

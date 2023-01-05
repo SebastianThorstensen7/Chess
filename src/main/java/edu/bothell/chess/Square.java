@@ -35,6 +35,14 @@ public class Square {
   public int getRow(){
     return y;
   }
+
+  public void setColumn(int column){
+    this.x = column;
+  }
+
+  public void setRow(int row){
+    this.y = row;
+  }
   
   public void setPiece(Piece p) {
     this.piece = p;
