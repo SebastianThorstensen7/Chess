@@ -29,17 +29,14 @@ private double getSlope(int x, int y) {
   public boolean validateMove(Square x) {
     boolean validMove = false;
     
-    // moving to square occupied by the same team is always no good...
-    if( x.isTeam(team) ) return false;
+    if( x.isTeam(team) ) {
+      return false;
+    } else if(x.getRow() == super.getRow() || x.getColumn() == super.getColumn()) {
+      validMove = true;
+    } else if( Math.abs((x.getRow() - super.getRow()) / (x.getColumn() - super.getColumn())) == 1) {
+      validMove = true;
+    }
 
-    // moving like a rook...
-    if(x.getRow() == super.getRow() || x.getColumn() == super.getColumn()) {
-      validMove = true;
-    }
-    // moving like a bishop
-    if( Math.abs((x.getRow() - super.getRow()) / (x.getColumn() - super.getColumn())) == 1) {
-      validMove = true;
-    }
     boolean noPeacesBetween = checkInbetween(x);
     if(validMove && noPeacesBetween) {
         return true;
