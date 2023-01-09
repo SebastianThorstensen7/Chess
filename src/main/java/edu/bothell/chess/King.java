@@ -3,13 +3,9 @@ import java.util.Scanner;
 
 public class King extends Piece{
 
-  Boolean    team;
-  String     pieceID;
-  int        row;
-  int        column;
-  
-  public King(Boolean Team, String pieceID, int row, int column){
-    super(Team,pieceID,row,column);
+
+  public King(Boolean team, Square square, B board){
+    super(team,square,board);
   }
 
   public void move(Scanner scn){

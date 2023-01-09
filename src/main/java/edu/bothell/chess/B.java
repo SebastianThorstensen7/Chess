@@ -42,13 +42,15 @@ public class B{
    */  
   public B(){
     gameOver = false;
-    players[0] = new Player("Stever", true);
-    players[1] = new Player("Suezy Q", false);
+    players[0] = new Player("Stever", false);
+    players[1] = new Player("Suezy Q", true);
     // TODO: These pieces are for testing purposes....
-    pieces.add(new Bishop(true, 3, 5, this ));
-    pieces.add(new Bishop(false, 2, 2, this ));
-    pieces.add(new Pawn(false, 4, 4, this ));
-    pieces.add(new Rook(false, 1, 7, this ));
+    pieces.add(new Bishop(true, new Square(3,5), this ));
+    pieces.add(new Bishop(false, new Square(2,2), this ));
+    pieces.add(new Pawn(false, new Square(4,4), this ));
+    pieces.add(new Pawn(false, new Square(5,3), this ));
+    pieces.add(new Pawn(true, new Square(3,3), this ));
+    pieces.add(new Rook(false, new Square(1,7), this ));
     /////////////////////////////////////////////
     
     init();
@@ -149,7 +151,7 @@ public class B{
     
     // Use the piece to check its move
     //I think we implement here
-    return activePiece.validateMove(activeSquare,this.board);
+    return activePiece.validateMove(activeSquare);
   }
   
   /**

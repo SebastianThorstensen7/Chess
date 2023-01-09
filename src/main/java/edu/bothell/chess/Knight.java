@@ -14,13 +14,8 @@ import java.util.Scanner;
 
 public class Knight extends Piece {
 
-  Boolean Team;
-  String pieceID;
-  int row;
-  int column;
-
-  public Knight(Boolean Team, String pieceID, int row, int column) {
-    super(Team, pieceID, row, column);
+  public Knight(Boolean team, Square square, B board) {
+    super(team, square, board);
   }
 
   public void move(Scanner scn) {
@@ -29,7 +24,14 @@ public class Knight extends Piece {
   }
 
   // validate move method for Knight
+  /**
+   * Sebastian: Things to help you update the code 
+   * Starting coordinates are now got with super.getRow() and super.getColumn()
+   * Destination coordinates are now got with x.getRow() and x.getColumn()
+   * Don't worry about the check Inbetween method I'll be working on it
+   */
   public boolean validateMove(Square x) {
+    //Put code here, make sure to delete the line below after you're done
     return super.validateMove(x);
   }
 

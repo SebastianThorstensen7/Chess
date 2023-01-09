@@ -16,24 +16,26 @@ public class Rook extends Piece {
 
 
 
-  public Rook(boolean team, int column, int row, B board){
-    super(team, column, row, board);
+  public Rook(boolean team, Square square, B board){
+    super(team, square, board);
   }
   
-  public Rook(boolean Team, String pieceID, int row, int column) {
-    super(Team, pieceID, row, column);
-  }
-
   public void move(Scanner scn) {
     super.move(scn);
     System.out.println("Rook move");
   }
 
   // validate move method for Rook
-  public boolean validateMove(Square x,Square[][] board) {
+ /**
+   * Sebastian: Things to help you update the code 
+   * Starting coordinates are now got with super.getRow() and super.getColumn()
+   * Destination coordinates are now got with x.getRow() and x.getColumn()
+   * Don't worry about the check Inbetween method I'll be working on it
+   */
+  public boolean validateMove(Square x) {
       boolean validMove       = false;
       //code goes here
-      boolean noPeacesBetween = checkInbetween(board);
+      boolean noPeacesBetween = checkInbetween(x);
       if(validMove && noPeacesBetween) {
         return true;
       }

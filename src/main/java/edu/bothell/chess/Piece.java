@@ -5,19 +5,8 @@ public class Piece {
   // Fields -- or state variables
   // what our Piece has
   boolean team;
-  String pieceID = "Is this necissary?"; //TODO: Do you need this?
-  int row;
-  int column;
   private Square square;
   private B state;
-
-  // Constructor
-  public Piece(boolean team, String pieceID, int row, int column) {
-    this.team = team;
-    this.pieceID = pieceID;
-    this.row = row;
-    this.column = column;
-  }
 
   /**
    * GUS: New constructore for a Piece -- adding a board and removing the ID
@@ -27,10 +16,9 @@ public class Piece {
    * @param  column  int
    * @param  board   Board type with Square[][] and ArrayList<Piece>
    */
-  public Piece(boolean Team, int column, int row, B state) {
-    this.team = Team;
-    this.column = column;
-    this.row = row;
+  public Piece(boolean team, Square square, B state) {
+    this.team = team;
+    this.square = square;
     this.state = state;
   }
 
@@ -47,8 +35,6 @@ public class Piece {
 
   public void setSquare(Square square){
     this.square = square;
-    this.column = square.getColumn();
-    this.row = square.getRow();
   }
   
   public void move(Scanner scn) {
@@ -59,18 +45,18 @@ public class Piece {
   // Super method is king movement
   public boolean validateMove(Square x) {
     if( x.isTeam(team) ) return false;
-    if (this.column != x.getColumn() && this.row != x.getRow()) {
-        if ((this.column + 1 == x.getColumn()) || (this.column - 1 == x.getColumn())) {
-          if ((this.row + 1 == x.getRow()) || (this.row - 1 == x.getRow() )) {
+    if (this.getColumn() != x.getColumn() && this.getRow() != x.getRow()) {
+        if ((this.getColumn() + 1 == x.getColumn()) || (this.getColumn() - 1 == x.getColumn())) {
+          if ((this.getRow() + 1 == x.getRow()) || (this.getRow() - 1 == x.getRow() )) {
             return true;
           }
         } 
-      } else if((this.column != x.getColumn()) && (this.row == x.getRow()) ) {
-        if(this.column + 1 == x.getColumn() || this.column - 1 == x.getColumn()) {
+      } else if((this.getColumn() != x.getColumn()) && (this.getRow() == x.getRow()) ) {
+        if(this.getColumn() + 1 == x.getColumn() || this.getColumn() - 1 == x.getColumn()) {
           return true;
         } 
-      } else if((this.column == x.getColumn()) && (this.row != x.getRow())) {
-        if ((this.row + 1 == x.getRow()) || (this.row - 1 == x.getRow() )) {
+      } else if((this.getColumn() == x.getColumn()) && (this.getRow() != x.getRow())) {
+        if ((this.getRow() + 1 == x.getRow()) || (this.getRow() - 1 == x.getRow() )) {
             return true;
         } 
       } 
@@ -78,29 +64,24 @@ public class Piece {
   }
 
   //Method to check if there a pieces between a location and destination
-  public boolean checkInbetween(Square[][] Board) {
-    
+  public boolean checkInbetween(Square end) {
     return true;
   }
 
   public void setRow(int row) {
-    this.row = row;
+    this.square.setRow(row);
   }
 
   public int getRow() {
-    return this.row;
+    return square.getRow();
   }
 
   public void setColumn(int column) {
-    this.column = column;
+    this.square.setColumn(column);
   }
 
   public int getColumn() {
-    return this.column;
-  }
-
-  public String getPieceID() {
-    return this.pieceID;
+    return square.getColumn();
   }
 
   public boolean getTeam() {
