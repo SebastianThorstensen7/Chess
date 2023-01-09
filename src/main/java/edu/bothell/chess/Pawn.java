@@ -15,18 +15,14 @@ public class Pawn extends Piece {
   public boolean validateMove(Square x) {
     boolean validMove = false;
     if(x.isEmpty()) {
-      System.out.println("Square is empty");
       if (super.getColumn() == x.getColumn()) {
-        System.out.println("In same column");
         if ((super.getRow() + 2 == x.getRow()) && super.team == true && firstMove) {
-          System.out.println("First pawn move (black)");
           this.firstMove = false;
           validMove = true;
         } else if ((super.getRow() + 1 == x.getRow()) && (super.team == true)) {
           validMove = true;
         }
         if ((super.getRow() - 2 == x.getRow()) && super.team == false && firstMove) {
-          System.out.println("First pawn move (white)");
           this.firstMove = false;
           validMove = true;
           
@@ -35,15 +31,12 @@ public class Pawn extends Piece {
         }
       }
     } else {
-      System.out.println("Occupied space");
       if (super.team) {
-        System.out.println("black piece");
-          if ((super.getRow() + 1 == x.getRow()) && ((super.getColumn() + 1 == x.getColumn()) || (super.getColumn() - 1 == getColumn()))) {
+          if ((super.getRow() + 1 == x.getRow()) && ((super.getColumn() + 1 == x.getColumn()) || (super.getColumn() - 1 == x.getColumn()))) {
             validMove = true;
           }
         } else {
-        System.out.println("white piece");
-          if ((super.getRow() - 1 == x.getRow()) && ((super.getColumn() + 1 == getColumn()) || (super.getColumn() - 1 == getColumn()))) {
+          if ((super.getRow() - 1 == x.getRow()) && ((super.getColumn() + 1 == x.getColumn()) || (super.getColumn() - 1 == x.getColumn()))) {
             validMove = true;
           } 
         }
