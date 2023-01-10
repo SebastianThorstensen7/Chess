@@ -51,6 +51,8 @@ public class B{
     pieces.add(new Pawn(false, new Square(5,3), this ));
     pieces.add(new Pawn(true, new Square(3,3), this ));
     pieces.add(new Rook(false, new Square(1,7), this ));
+    pieces.add(new Queen(false, new Square(0,0), this));
+    pieces.add(new Queen(true, new Square(7,7), this));
     /////////////////////////////////////////////
     
     init();

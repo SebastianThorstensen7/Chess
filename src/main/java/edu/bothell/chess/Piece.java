@@ -65,6 +65,7 @@ public class Piece {
 
   //Method to check if there a pieces between a location and destination
   public boolean checkInbetween(Square end) {
+    
     return true;
   }
 
