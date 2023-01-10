@@ -1,2 +1,4 @@
 # Ignore Class Files
+/target
 *.class
+*.jar
