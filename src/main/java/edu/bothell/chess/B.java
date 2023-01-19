@@ -11,7 +11,7 @@ package edu.bothell.chess;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class B{
+public class B {
 
   ///////////////////////////////////////////////
   // PROPERTIES of CHESS BOARD
@@ -57,6 +57,28 @@ public class B{
     
     init();
     
+    //draw();
+    //makeMove();
+  }
+  /**
+   * Constructs a game board with specific pieces
+   * @param  pieces  ArrayList<Piece> describing the pieces on the board
+   */   
+  public B(ArrayList<Piece> pieces){
+    this.pieces = pieces;
+    players[0] = new Player("Stever", false);
+    players[1] = new Player("Suezy Q", true);
+    init();
+  }
+
+  public B(ArrayList<Piece> pieces, Player P1, Player P2) {
+    this.pieces = pieces;
+    players[0] = P1;
+    players[1] = P2;
+    init();
+  }
+
+  public void letsPlay() {
     while(!this.gameOver){
       
       for(Player p : this.players){
@@ -70,18 +92,6 @@ public class B{
         
       }
     }
-    //draw();
-    //makeMove();
-  }
-  /**
-   * Constructs a game board with specific pieces
-   * @param  pieces  ArrayList<Piece> describing the pieces on the board
-   */   
-  public B(ArrayList<Piece> pieces){
-    this.pieces = pieces;
-    init();
-    draw();
-    makeMove();
   }
 
   

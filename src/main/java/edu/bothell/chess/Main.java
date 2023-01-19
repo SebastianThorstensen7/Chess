@@ -13,7 +13,8 @@ import java.util.ArrayList;
 class Main {
   public static void main(String[] args) {
     System.out.println("CHESS");
-    new B();
+    B board = new B();
+    board.letsPlay();
     //doIt();
   }
 

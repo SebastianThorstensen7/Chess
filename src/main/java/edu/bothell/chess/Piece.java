@@ -68,29 +68,31 @@ public class Piece {
 
   // Method to check if there a pieces between a location and destination
   public boolean checkInbetween(Square end) {
-    int rowDirect = getDirection(this.getRow() - end.getRow());
-    int columnDirect = getDirection(this.getColumn() - end.getColumn());
-    for(int x = this.getRow(); x < end.getRow(); x = x + rowDirect) {
-      for(int y = this.getColumn(); y < end.getColumn(); y = x + columnDirect) {
-        Square square = state.getSquare(x,y);
-        if(!square.isEmpty()) {
-          System.out.println("Piece between");
-          return false;
-        }
+    /*
+    for(int i = 1; i < getDistance(end); i++) {
+      Square square = state.getSquare(x, y);
+      if(!square.isEmpty()) {
+        System.out.println("Piece between");
+        return false;
       }
     }
     System.out.println("No pieces between");
+    */
     return true;
   }
 
-  public int getDirection(int direction) {
-    if (direction <= -1) {
-      return -1;
-    } else if (direction >= 1) {
-      return 1;
-    } else {
-      return 0;
-    }
+  public int[][] getDirection(int direction) {
+    return new int[4][4]; 
+  }
+
+  public int getDistance(Square end) {
+    int rowDist = Math.abs(this.getRow() - end.getRow());
+    int columnDist = Math.abs(this.getColumn() - end.getColumn());
+      if(rowDist > columnDist) {
+        return rowDist;
+      } else {
+        return columnDist;
+      }
   }
 
   public void setRow(int row) {
