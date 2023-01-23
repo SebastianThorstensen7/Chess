@@ -68,31 +68,43 @@ public class Piece {
 
   // Method to check if there a pieces between a location and destination
   public boolean checkInbetween(Square end) {
-    /*
-    for(int i = 1; i < getDistance(end); i++) {
-      Square square = state.getSquare(x, y);
-      if(!square.isEmpty()) {
-        System.out.println("Piece between");
+    int[] direction = getDirection(end);
+    for (int i = 1; i < getDistance(end); i++) {
+      Square square = state.getSquare(this.getRow() - (i * direction[0]), this.getColumn() - (i * direction[1]));
+      if (!square.isEmpty()) {
         return false;
       }
     }
-    System.out.println("No pieces between");
-    */
     return true;
   }
 
-  public int[][] getDirection(int direction) {
-    return new int[4][4]; 
+  public int[] getDirection(Square end) {
+    int rowDirect = this.getRow() - end.getRow();
+    int columnDirect = this.getColumn() - end.getColumn();
+    int[] direction = new int[2];
+    if (rowDirect <= -1)
+      direction[0] = -1;
+    if (rowDirect == 0)
+      direction[0] = 0;
+    if (rowDirect >= 1)
+      direction[0] = 1;
+    if (columnDirect <= -1)
+      direction[1] = -1;
+    if (columnDirect == 0)
+      direction[1] = 0;
+    if (columnDirect >= 1)
+      direction[1] = 1;
+    return direction;
   }
 
   public int getDistance(Square end) {
     int rowDist = Math.abs(this.getRow() - end.getRow());
     int columnDist = Math.abs(this.getColumn() - end.getColumn());
-      if(rowDist > columnDist) {
-        return rowDist;
-      } else {
-        return columnDist;
-      }
+    if (rowDist > columnDist) {
+      return rowDist;
+    } else {
+      return columnDist;
+    }
   }
 
   public void setRow(int row) {
