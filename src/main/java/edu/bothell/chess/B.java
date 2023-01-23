@@ -230,11 +230,8 @@ public class B {
             board[y][x].setPiece(p);
           }
         }
-        
       }
     }
-
-    
   }
 
   /**
