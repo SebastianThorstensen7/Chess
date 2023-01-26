@@ -20,14 +20,14 @@ public class BishopTest {
   }
 
   public void setPieces(){
-    pieces.add(new Bishop(true, new Square(4,3), board1));
+    pieces.add(new Rook(true, new Square(4,3), board1));
     pieces.add(new Rook(false, new Square(5,1), board1));
-    pieces.add(new Queen(true, new Square(1,7), board1));
-    pieces.add(new Knight(false, new Square(2,2), board1));
-    init(board);
+    pieces.add(new Rook(true, new Square(1,7), board1));
+    pieces.add(new Rook(false, new Square(2,2), board1));
+    setBoard(board);
   }
   
-   public void init(Square[][] board){
+   public void setBoard(Square[][] board){
 
     for (int y = 0; y < board.length; y++) {
       for(int x = 0; x < board[y].length; x++){
