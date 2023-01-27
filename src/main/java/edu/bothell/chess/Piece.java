@@ -115,6 +115,9 @@ public class Piece {
     return square.getRow();
   }
 
+  public void setBoard(B board) {
+    this.state = board;
+  }
   public void setColumn(int column) {
     this.square.setColumn(column);
   }
