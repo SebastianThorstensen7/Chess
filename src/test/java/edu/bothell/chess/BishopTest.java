@@ -40,4 +40,14 @@ public class BishopTest {
       }
     }
   }
+  /*
+  public boolean checkValidation(boolean validation, Square square) {
+    if (Math.abs((square.getRow() - b.getRow()) / (square.getColumn() - b.getColumn())) == 1) {
+      validation = true;
+    } else if (Math.abs((square.getRow() - b.getRow()) / (square.getColumn() - b.getColumn())) == 1) {
+      validation = true;
+    }
+    return validation;
+  }
+  */
 }
