@@ -14,15 +14,26 @@ public class KnightTest {
 
   public void setPieces() {
     pieces.add(new Knight(true, new Square(4, 3), board1));
-    pieces.add(new Knight(false, new Square(5, 1), board1));
-    pieces.add(new Knight(true, new Square(1, 7), board1));
-    pieces.add(new Knight(false, new Square(2, 2), board1));
+    
+    pieces.add(new Pawn(true, new Square(5, 1), board1));
+    pieces.add(new Pawn(true, new Square(6, 2), board1));
+    pieces.add(new Pawn(true, new Square(5, 5), board1));
+    pieces.add(new Pawn(true, new Square(6, 7), board1));
+    pieces.add(new Pawn(true, new Square(2, 2), board1));
+    pieces.add(new Pawn(true, new Square(6, 3), board1));
     setBoard(board);
   }
 
   @Test
   public void rookShouldAnswerWithFalse() {
-    assertFalse(board1.checkMove(2, 2, 5, 12));
+    // if it tries to take a piece on the same team:
+    assertFalse(board1.checkMove(4, 3, 5, 5));
+    assertFalse(board1.checkMove(4, 3, 5, 1));
+    assertFalse(board1.checkMove(4, 3, 6, 2));
+    assertFalse(board1.checkMove(4, 3, 2, 2));
+    assertFalse(board1.checkMove(4, 3, 6, 7));
+    assertFalse(board1.checkMove(4, 3, 6, 3));
+
   }
 
   public void setBoard(Square[][] board) {
