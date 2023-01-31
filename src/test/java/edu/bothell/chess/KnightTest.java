@@ -33,7 +33,6 @@ public class KnightTest {
     assertFalse(board1.checkMove(4, 3, 2, 2));
     assertFalse(board1.checkMove(4, 3, 6, 7));
     assertFalse(board1.checkMove(4, 3, 6, 3));
-
   }
 
   public void setBoard(Square[][] board) {
@@ -49,5 +48,4 @@ public class KnightTest {
       }
     }
   }
-
 }
