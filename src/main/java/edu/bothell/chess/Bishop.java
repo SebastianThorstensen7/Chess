@@ -9,27 +9,34 @@ import java.util.*;
 
 public class Bishop extends Piece {
 
-
-  
   //////////////////////////////////////////////////////////
   // BETTER CONSTRUCTOR FOR BISHOP!!!!!
   //////////////////////////////////////////////////////////
-  public Bishop(boolean team, Square square, B board){
+  public Bishop(boolean team, Square square, B board) {
     super(team, square, board);
   }
 
   // Validate move method for bishop
   /**
-   * Sebastian: Things to help you update the code 
+   * Sebastian: Things to help you update the code
    * Starting coordinates are now got with super.getRow() and super.getColumn()
    * Destination coordinates are now got with x.getRow() and x.getColumn()
    * Don't worry about the check Inbetween method I'll be working on it
    */
   public boolean validateMove(Square x) {
-    boolean validMove       = true;
-    //code goes here
+    boolean validMove = false;
+    
+      if (Math.abs((x.getRow() - super.getRow()) / (x.getColumn() - super.getColumn())) == 1) {
+        if (x.isEmpty()) {
+          validMove = true;
+        } else if (super.getTeam() != x.getPiece().getTeam()) {
+          validMove = true;
+        }
+      }
+    
+
     boolean noPeacesBetween = checkInbetween(x);
-    if(validMove && noPeacesBetween) {
+    if (validMove && noPeacesBetween) {
       return true;
     }
     return false;
