@@ -24,67 +24,32 @@ public class Rook extends Piece {
   }
 
   // validate move method for Rook
- /**
-   * Sebastian: Things to help you update the code 
+  /**
+   * Sebastian: Things to help you update the code
    * Starting coordinates are now got with super.getRow() and super.getColumn()
    * Destination coordinates are now got with x.getRow() and x.getColumn()
    * Don't worry about the check Inbetween method I'll be working on it
-
-
+   * 
+   * 
    */
   public boolean validateMove(Square x) {
-      boolean validMove       = false;
+    boolean validMove = false;
+
+    if (x.getRow() == super.getRow() || x.getColumn() == super.getColumn()) {
       if (x.isEmpty()) {
-      if (super.getRow()  != x.getRow() && super.getColumn() != x.getColumn()) {
-        return false;
-      } else if (super.getRow()  != x.getRow() && super.getColumn() == x.getColumn()) {
-        if (super.getRow()  < x.getRow()) {
-          for (int i = super.getRow(); i < x.getColumn(); i++) {
-            if (x.isEmpty()) {
-              return false;
-            } else if (x.getRow() - 1 == i) {
-              validMove = true;
-              return validMove;
-            }
-          }
-        } else if (super.getRow()  > x.getRow()) {
-          for (int i = super.getRow() ; i > x.getRow(); i--) {
-            if (x.isEmpty()) {
-              return false;
-            } else if (x.getRow() - 1 == i) {
-              validMove = true;
-              return validMove;
-            }
-          }
-        }
         validMove = true;
-        return validMove;
-      } else {
+      } else if (super.getTeam() != x.getPiece().getTeam()) {
         validMove = true;
-        return validMove;
-      }}
-
-
-    else if (super.getRow()  == x.getRow() && super.getColumn() != x.getColumn()) {
-      if (super.getColumn() > x.getColumn()) {
-        for (int i = super.getColumn(); i > x.getColumn(); i--) {
-          if ((x.isEmpty())) {
-            return false;
-          }
-        }
-      } else if (super.getColumn() < x.getColumn()) {
-        for (int i = super.getColumn(); i < x.getColumn(); i++) {
-          if ((x.isEmpty())) {
-            return false;
-          }
-        }
       }
+
+    }
+
+    boolean noPeacesBetween = checkInbetween(x);
+    if (validMove && noPeacesBetween) {
       return true;
-    } else {
-      validMove = true;
-      return validMove;
-    }}
-  
+    }
+    return false;
+  }
 
   public String toString() {
     if (super.getTeam()) {

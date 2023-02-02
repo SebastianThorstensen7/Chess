@@ -25,14 +25,53 @@ public class Knight extends Piece {
 
   // validate move method for Knight
   /**
-   * Sebastian: Things to help you update the code 
+   * Sebastian: Things to help you update the code
    * Starting coordinates are now got with super.getRow() and super.getColumn()
    * Destination coordinates are now got with x.getRow() and x.getColumn()
    * Don't worry about the check Inbetween method I'll be working on it
    */
   public boolean validateMove(Square x) {
-    //Put code here, make sure to delete the line below after you're done
-    return super.validateMove(x);
+    boolean validMove = false;
+    
+    if (super.getColumn() + 2 == x.getColumn() || super.getColumn() - 2 == x.getColumn()) {
+      if (super.getRow() + 1 == x.getRow() || super.getRow() - 1 == x.getRow()) {
+        if (x.isEmpty()) {
+        validMove = true;
+      } else if (super.getTeam() != x.getPiece().getTeam()) {
+        validMove = true;
+      }
+      }
+    } else if (super.getColumn() + 1 == x.getColumn() || super.getColumn() - 1 == x.getColumn()) {
+      if (super.getRow() + 2 == x.getRow() || super.getRow() - 2 == x.getRow()) {
+        if (x.isEmpty()) {
+        validMove = true;
+      } else if (super.getTeam() != x.getPiece().getTeam()) {
+        validMove = true;
+      }
+      }
+    } else if (super.getRow() + 1 == x.getRow() || super.getRow() - 1 == x.getRow()) {
+      if (super.getColumn() + 2 == x.getColumn() || super.getColumn() - 2 == x.getColumn()) {
+        if (x.isEmpty()) {
+        validMove = true;
+      } else if (super.getTeam() != x.getPiece().getTeam()) {
+        validMove = true;
+      }
+      }
+    } else if(super.getRow() + 2 == x.getRow() || super.getRow() - 2 == x.getRow()) {
+      if (super.getColumn() + 1 == x.getColumn() || super.getColumn() - 1 == x.getColumn()) {
+        if (x.isEmpty()) {
+        validMove = true;
+      } else if (super.getTeam() != x.getPiece().getTeam()) {
+        validMove = true;
+      }
+      }
+    }
+    
+
+    if (validMove) {
+      return true;
+    }
+    return false;
   }
 
   public String toString() {

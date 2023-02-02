@@ -18,8 +18,8 @@ public class PawnTest {
     ArrayList<Piece> pieces = new ArrayList<Piece>();
     pieces.add(new Pawn(false,new Square(5,5), board));
     pieces.add(new Pawn(false,new Square(3,5), board));
-    pieces.add(new Pawn(true, new Square(4,4), board));
-    pieces.add(new Pawn(true, new Square(5,4), board));
+    pieces.add(new Pawn(true ,new Square(4,4), board));
+    pieces.add(new Pawn(true ,new Square(5,4), board));
     board = new B(pieces);
     for(Piece P: pieces) {
       P.setBoard(board);
@@ -29,6 +29,7 @@ public class PawnTest {
   @Test
   public void firstMoveWorks() {
     assertTrue(board.checkMove(3,5,3,3));
+    assertFalse(board.checkMove(5,5,5,3));
   }
 
   @Test
@@ -43,11 +44,5 @@ public class PawnTest {
     assertFalse(board.checkMove(5,5,5,4));
     assertTrue(board.checkMove(5,5,4,4));
   }
-
-  /*
-  @Test
-  public void pieceInWay() {
-    assertFalse(board.checkMove(5,5,5,3));
-  }
-  */
+  
 }

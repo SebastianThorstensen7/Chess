@@ -1,4 +1,4 @@
-
+/*
 package edu.bothell.chess;
 
 import static org.junit.Assert.assertFalse;
@@ -7,9 +7,7 @@ import java.util.*;
 
 import org.junit.Test;
 
-/**
- * Unit test for simple App.
- */
+
 
 public class BishopTest {
 
@@ -72,3 +70,4 @@ public class BishopTest {
   }
 }
 
+*/

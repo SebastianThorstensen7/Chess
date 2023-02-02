@@ -2,50 +2,46 @@ package edu.bothell.chess;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
 import java.util.*;
 
+import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
 
 public class KnightTest {
-  B board1 = new B();
-  ArrayList<Piece> pieces = new ArrayList<Piece>();
-  private Square[][] board = new Square[8][8];
 
+  B board;
+
+  @Before
   public void setPieces() {
-    pieces.add(new Knight(true, new Square(4, 3), board1));
-    
-    pieces.add(new Pawn(true, new Square(5, 1), board1));
-    pieces.add(new Pawn(true, new Square(6, 2), board1));
-    pieces.add(new Pawn(true, new Square(5, 5), board1));
-    pieces.add(new Pawn(true, new Square(6, 7), board1));
-    pieces.add(new Pawn(true, new Square(2, 2), board1));
-    pieces.add(new Pawn(true, new Square(6, 3), board1));
-    setBoard(board);
+    ArrayList<Piece> pieces = new ArrayList<Piece>();
+    pieces.add(new Knight(true, new Square(4, 3), board));
+    pieces.add(new Pawn(false, new Square(5, 1), board));
+    pieces.add(new Pawn(false, new Square(6, 2), board));
+    pieces.add(new Pawn(true, new Square(5, 5), board));
+    pieces.add(new Pawn(false, new Square(6, 7), board));
+    pieces.add(new Pawn(false, new Square(2, 2), board));
+    pieces.add(new Pawn(false, new Square(6, 3), board));
+    board = new B(pieces);
+    for (Piece P : pieces) {
+      P.setBoard(board);
+    }
   }
 
   @Test
-  public void rookShouldAnswerWithFalse() {
-    // if it tries to take a piece on the same team:
-    assertFalse(board1.checkMove(4, 3, 5, 5));
-    assertFalse(board1.checkMove(4, 3, 5, 1));
-    assertFalse(board1.checkMove(4, 3, 6, 2));
-    assertFalse(board1.checkMove(4, 3, 2, 2));
-    assertFalse(board1.checkMove(4, 3, 6, 7));
-    assertFalse(board1.checkMove(4, 3, 6, 3));
+  public void KnightShouldAnswerWithFalse() {
+    assertFalse(board.checkMove(4, 3, 6, 3));
+    assertFalse(board.checkMove(4, 3, 6, 7));
+    assertFalse(board.checkMove(4, 3, 5, 5));
   }
 
-  public void setBoard(Square[][] board) {
-
-    for (int y = 0; y < board.length; y++) {
-      for (int x = 0; x < board[y].length; x++) {
-        this.board[y][x] = new Square(x, y);
-        for (Piece p : pieces) {
-          if (p.getRow() == y && p.getColumn() == x) {
-            board[y][x].setPiece(p);
-          }
-        }
-      }
-    }
+  @Test
+  public void KnightShouldAnswerWithTrue() {
+    assertTrue(board.checkMove(4, 3, 2, 2));
+    assertTrue(board.checkMove(4, 3, 5, 1));
+    assertTrue(board.checkMove(4, 3, 6, 2));
+    assertTrue(board.checkMove(4, 3, 3, 5));
   }
+
 }

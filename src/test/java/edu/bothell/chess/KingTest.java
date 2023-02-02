@@ -26,6 +26,23 @@ public class KingTest {
   @Test
   public void kingMoves() {
     assertTrue(board.checkMove(4,4,3,3));
+    assertTrue(board.checkMove(4,4,4,3));
+    assertTrue(board.checkMove(4,4,5,3));
+    assertTrue(board.checkMove(4,4,3,4));
+    assertTrue(board.checkMove(4,4,5,4));
+    assertTrue(board.checkMove(4,4,3,5));
+    assertTrue(board.checkMove(4,4,4,5));
+    assertTrue(board.checkMove(4,4,5,5));
+  }
+
+  @Test
+  public void castling() {
+    
+  }
+
+  @Test
+  public void cantMoveIntoCheck() {
+    
   }
   
 }

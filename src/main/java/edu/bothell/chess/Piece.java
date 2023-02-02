@@ -70,7 +70,7 @@ public class Piece {
   public boolean checkInbetween(Square end) {
     int[] direction = getDirection(end);
     for (int i = 1; i < getDistance(end); i++) {
-      Square square = state.getSquare(this.getRow() - (i * direction[0]), this.getColumn() - (i * direction[1]));
+      Square square = state.getSquare(this.getColumn() - (i * direction[0]), this.getRow() - (i * direction[1]));
       if (!square.isEmpty()) {
         return false;
       }
@@ -82,18 +82,19 @@ public class Piece {
     int rowDirect = this.getRow() - end.getRow();
     int columnDirect = this.getColumn() - end.getColumn();
     int[] direction = new int[2];
-    if (rowDirect <= -1)
-      direction[0] = -1;
-    if (rowDirect == 0)
-      direction[0] = 0;
-    if (rowDirect >= 1)
-      direction[0] = 1;
     if (columnDirect <= -1)
-      direction[1] = -1;
+      direction[0] = -1;
     if (columnDirect == 0)
-      direction[1] = 0;
+      direction[0] = 0;
     if (columnDirect >= 1)
+      direction[0] = 1;
+    if (rowDirect <= -1)
+      direction[1] = -1;
+    if (rowDirect == 0)
+      direction[1] = 0;
+    if (rowDirect >= 1)
       direction[1] = 1;
+
     return direction;
   }
 
@@ -118,6 +119,7 @@ public class Piece {
   public void setBoard(B board) {
     this.state = board;
   }
+
   public void setColumn(int column) {
     this.square.setColumn(column);
   }

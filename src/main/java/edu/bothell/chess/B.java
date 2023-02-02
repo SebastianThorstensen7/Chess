@@ -42,17 +42,32 @@ public class B {
    */  
   public B(){
     gameOver = false;
+    // TODO: These players are for testing purposes....
     players[0] = new Player("Stever", false);
     players[1] = new Player("Suezy Q", true);
-    // TODO: These pieces are for testing purposes....
-    pieces.add(new Bishop(true, new Square(3,5), this ));
-    pieces.add(new Bishop(false, new Square(2,2), this ));
-    pieces.add(new Pawn(false, new Square(4,4), this ));
-    pieces.add(new Pawn(false, new Square(5,3), this ));
-    pieces.add(new Pawn(true, new Square(3,3), this ));
-    pieces.add(new Rook(false, new Square(1,7), this ));
-    pieces.add(new Queen(false, new Square(0,0), this));
-    pieces.add(new Queen(true, new Square(7,7), this));
+    
+        for (int i = 0; i < 8; i++) {
+      pieces.add(new Pawn(true, new Square(i, 1), this));
+    }
+    for (int k = 0; k < 2; k++) {
+      pieces.add(new Rook(true, new Square((k * 7),0),this ));
+      pieces.add(new Knight(true, new Square((k * 5) + 1,0), this ));
+      pieces.add(new Bishop(true, new Square((k * 3) + 2,0), this));
+    }
+    pieces.add(new King(true, new Square(4,0), this));
+    pieces.add(new Queen(true, new Square(3,0), this));
+
+    for (int j = 0; j < 8; j++) {
+      pieces.add(new Pawn(false, new Square(j,6), this));
+    }
+    for (int k = 0; k < 2; k++) {
+      pieces.add(new Rook(false,new Square((k * 7),7), this));
+      pieces.add(new Knight(false, new Square((k * 5) + 1, 7), this));
+      pieces.add(new Bishop(false, new Square((k * 3) + 2, 7), this));
+    }
+    pieces.add(new King(false, new Square(4,7), this));
+    pieces.add(new Queen(false, new Square(3,7), this));
+
     /////////////////////////////////////////////
     
     init();
@@ -163,6 +178,7 @@ public class B {
     
     // Use the piece to check its move
     //I think we implement here
+    
     return activePiece.validateMove(activeSquare);
   }
   
