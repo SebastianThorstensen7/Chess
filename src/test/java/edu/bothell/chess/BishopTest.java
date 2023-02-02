@@ -1,73 +1,47 @@
-/*
+
 package edu.bothell.chess;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 import java.util.*;
 
 import org.junit.Test;
 
-
+/**
+ * Unit test for simple App.
+ */
 
 public class BishopTest {
 
-  B board1 = new B();
-  ArrayList<Piece> pieces  = new ArrayList<Piece>();
-  private Square[][] board = new Square[8][8];
-  Bishop b = new Bishop(true, new Square(3,7), board1);
+  B board;
+
+
+  @Before
+  public void setUp() {
+      ArrayList<Piece> pieces = new ArrayList<Piece>();
+    pieces.add(new Bishop(true, new Square(3, 4), board));
+    pieces.add(new Rook(true, new Square(4, 3), board));
+    pieces.add(new Rook(false, new Square(5, 6), board));
+    pieces.add(new Rook(true, new Square(1, 7), board));
+    pieces.add(new Rook(false, new Square(1, 2), board));
+    board = new B(pieces);
+    for(Piece p: pieces) {
+      p.setBoard(board);
+    }
+  }
   
   @Test
-  public void bishopShouldAnswerWithFalse() {
-    setPieces();
+  public void bishopShouldAnswerWithTrue() {
+    assertTrue(board.checkMove(3,4,1,2));
+    assertTrue(board.checkMove(3,4,5,6));
   }
 
-  public void setPieces(){
-    pieces.add(b);
-    pieces.add(new Rook(true, new Square(4,3), board1));
-    pieces.add(new Rook(false, new Square(5,1), board1));
-    pieces.add(new Rook(true, new Square(1,7), board1));
-    pieces.add(new Rook(false, new Square(2,2), board1));
-    setBoard(board);
+  @Test
+  public void bishopShouldAnswerWithFalse() {
+    assertTrue(board.checkMove(3,4,4,3));
+    assertTrue(board.checkMove(3,4,1,7));
+    assertTrue(board.checkMove(3,4,3,3));
   }
   
-   public void setBoard(Square[][] board){
-    boolean validation = false;
-    for (int y = 0; y < board.length; y++) {
-      for(int x = 0; x < board[y].length; x++){
-        this.board[y][x] = new Square(x,y);
-        assertFalse(board1.checkMove(b.getRow(), b.getColumn(), x, y)); //
-        for(Piece p : pieces){
-          if( p.getRow() == y && p.getColumn() == x ) {
-            board[y][x].setPiece(p);
-          }
-        }
-        System.out.println(checkValidation(validation, board[x][y]));
-        System.out.println(checkOpposTeam(board[x][y]));
-      }
-    }
-  }
-
-  //First Test
-  public boolean checkValidation(boolean validation, Square square) {
-    if (Math.abs((square.getRow() - b.getRow()) / (square.getColumn() - b.getColumn())) == 1) {
-      validation = true;
-    } else if (Math.abs((square.getRow() - b.getRow()) / (square.getColumn() - b.getColumn())) != 1) {
-      validation = false;
-    }
-    return validation;
-  }
-
-  //Second Test
-  public boolean checkOpposTeam(Square square){
-    boolean canAttack = false;
-    if(square.isTeam(b.getTeam()) == b.getTeam()){
-      canAttack = false;
-    }
-    else if(square.isTeam(b.getTeam()) != b.getTeam()){
-      canAttack = true;
-    }
-    return canAttack;
-  }
 }
-
-*/

@@ -2,8 +2,8 @@ edu/bothell/chess/Square.class
 edu/bothell/chess/Player.class
 edu/bothell/chess/Piece.class
 edu/bothell/chess/Bishop.class
-edu/bothell/chess/Turn.class
 edu/bothell/chess/Rook.class
+edu/bothell/chess/Turn.class
 Screen.class
 edu/bothell/chess/Knight.class
 edu/bothell/chess/Main.class
@@ -11,3 +11,4 @@ edu/bothell/chess/Pawn.class
 edu/bothell/chess/Queen.class
 edu/bothell/chess/B.class
 edu/bothell/chess/King.class
+edu/bothell/chess/Screen.class
