@@ -31,16 +31,20 @@ public class KnightTest {
 
   @Test
   public void KnightShouldAnswerWithFalse() {
+    //Knight trying to go to a spot with a same team piece
     assertFalse(board.checkMove(4, 3, 6, 3));
     assertFalse(board.checkMove(4, 3, 6, 7));
     assertFalse(board.checkMove(4, 3, 5, 5));
   }
 
+  
   @Test
   public void KnightShouldAnswerWithTrue() {
+    //Knight trying to go to a spot with a diff team piece, that abides by knight logic
     assertTrue(board.checkMove(4, 3, 2, 2));
     assertTrue(board.checkMove(4, 3, 5, 1));
     assertTrue(board.checkMove(4, 3, 6, 2));
+    //Knight trying to go to an empty spot that abides by knight logic
     assertTrue(board.checkMove(4, 3, 3, 5));
   }
 

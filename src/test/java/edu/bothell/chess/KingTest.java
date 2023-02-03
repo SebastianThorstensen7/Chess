@@ -25,6 +25,7 @@ public class KingTest {
   
   @Test
   public void kingMoves() {
+    //King checking if it can move to all the spaces around it
     assertTrue(board.checkMove(4,4,3,3));
     assertTrue(board.checkMove(4,4,4,3));
     assertTrue(board.checkMove(4,4,5,3));

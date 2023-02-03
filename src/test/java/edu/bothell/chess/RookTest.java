@@ -40,6 +40,7 @@ public class RookTest {
 
   @Test
   public void rookShouldAnswerWithTrue() {
+    //Rook simply moving left and right
     assertTrue(board.checkMove(4,3,0,3));
     assertTrue(board.checkMove(4,3,4,0));
   }

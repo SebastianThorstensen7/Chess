@@ -34,7 +34,6 @@ public class BishopTest {
   
   @Test
   public void bishopShouldAnswerWithTrue() {
-    board.draw();
     //Bishop trying to go to spots with diff team pieces
     assertTrue(board.checkMove(3,4,1,2));
     assertTrue(board.checkMove(3,4,5,6));
