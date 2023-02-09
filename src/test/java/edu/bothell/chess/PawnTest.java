@@ -28,7 +28,6 @@ public class PawnTest {
   
   @Test
   public void firstMoveWorks() {
-    board.draw();
     //Single pawm moving 2 spaces forward
     assertTrue(board.checkMove(3,5,3,3));
     //pawn attempting to move 2 forward, but blocked by a piece in the way
@@ -55,6 +54,11 @@ public class PawnTest {
   public void enPassant() {
     //assertTrue(board.checkMove());
     //assertTrue(board.checkMove());
+  }
+
+  @Test
+  public void promotion() {
+    
   }
   
 }

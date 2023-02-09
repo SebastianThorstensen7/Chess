@@ -18,6 +18,8 @@ public class King extends Piece{
     return super.validateMove(x);
   }
 
+  
+
   public String toString() {
     if(super.getTeam()) {
       return "♔";

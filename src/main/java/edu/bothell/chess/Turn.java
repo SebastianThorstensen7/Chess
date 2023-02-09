@@ -102,7 +102,7 @@ public class Turn{
   
   private void check(){
     System.out.println( "player about to play: " + player.getName() );
-    System.out.println( "is player in check?: " + check );    
+    System.out.println( "is player in check?: " + board.isCheck() );    
   }
 
   private void intro(){
