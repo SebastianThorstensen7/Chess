@@ -38,7 +38,7 @@ public class KingTest {
 
   @Test
   public void castling() {
-    
+    //assertTrue(board.checkMove(4,4,1,4));
   }
 
   @Test

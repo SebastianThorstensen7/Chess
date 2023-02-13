@@ -44,6 +44,10 @@ public class B {
     // TODO: These players are for testing purposes....
     players[0] = new Player("Stever", false);
     players[1] = new Player("Suezy Q", true);
+     pieces.add(new King(false, new Square(4,7),this));
+    pieces.add(new Rook(true, new Square(0,7), this));
+    pieces.add(new Rook(false, new Square(7,7), this));
+    /*
 
     for (int i = 0; i < 8; i++) {
       pieces.add(new Pawn(true, new Square(i, 1), this));
@@ -66,6 +70,8 @@ public class B {
     }
     pieces.add(new King(false, new Square(4, 7), this));
     pieces.add(new Queen(false, new Square(3, 7), this));
+*/
+    
 
     /////////////////////////////////////////////
 
