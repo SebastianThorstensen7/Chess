@@ -15,17 +15,14 @@ public class King extends Piece {
 
   // validate move method for King
   public boolean validateMove(Square x) {
-    System.out.println("hdeuqho");
     int rkDistance = this.getRow() - x.getRow();
-    /*
     if (canCastle(x, rkDistance)) {
       castle(x, rkDistance);
       return true;
     }
-    */
     return super.validateMove(x);
   }
-/*
+
   public boolean canCastle(Square x, int rkDistance) {
     if (this.getRow() == this.getRow() - 2) {
       if (team) {
@@ -46,14 +43,17 @@ public class King extends Piece {
     }
     return false;
   }
-  */
-  
-/*
+
   public void castle(Square x, int rkDistance) {
-    x.setRow(this.getRow() - rkDistance);
-    this.setRow(x.getRow());
+    if (x.getSymbol() == "♖") {
+      x.setRow(this.getRow() - rkDistance);
+      this.setRow(x.getRow());
+    } else if (x.getSymbol() == "♜") {
+      x.setRow(this.getRow() + rkDistance);
+      this.setRow(x.getRow());
+    }
   }
-*/
+
   public String toString() {
     if (super.getTeam()) {
       return "♔";

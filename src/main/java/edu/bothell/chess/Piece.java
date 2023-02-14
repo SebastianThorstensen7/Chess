@@ -132,4 +132,37 @@ public class Piece {
     return this.team;
   }
 
+
+
+
+//Only use for reference for castling
+  
+  public boolean openPath(Square x){
+    return openPath(x,false);
+  }
+
+  public boolean openPath(Square x, boolean checkProtect){
+    //int xMove = getDist(x)[0];
+    //int yMove = getDist(x)[1];
+
+    int xMove = getDist(x);
+    int yMove = getDist(x);
+    int d = getDistance(x);
+    B board = new B();
+
+    for(int i = 0; i < d - 1; i++){
+      Square step = board.getSquare(i*xMove+ x.getRow(), i*yMove+ x.getRow());
+      if(checkProtect) getAndTellProtect(step);
+      //if(step.getPiece()) return false;
+    }
+    return true;
+  }
+
+  public void getAndTellProtect(Square x){
+    
+  }
+  public int getDist(Square x){
+    return (this.getRow() - x.getRow());
+  }
+
 }
