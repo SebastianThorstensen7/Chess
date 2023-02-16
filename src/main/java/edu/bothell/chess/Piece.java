@@ -159,7 +159,8 @@ public class Piece {
   }
 
   public void getAndTellProtect(Square x){
-    
+    x.setRow(this.getRow() - getDist(x));
+    this.setRow(x.getRow());
   }
   public int getDist(Square x){
     return (this.getRow() - x.getRow());
