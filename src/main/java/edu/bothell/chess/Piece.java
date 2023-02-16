@@ -159,8 +159,15 @@ public class Piece {
   }
 
   public void getAndTellProtect(Square x){
-    x.setRow(this.getRow() - getDist(x));
-    this.setRow(x.getRow());
+    if(getDist(x) < 0){
+      x.setRow(this.getRow() - getDist(x));
+      this.setRow(x.getRow());
+    }
+    else if(getDist(x) > 0){
+      x.setRow(this.getRow() + getDist(x));
+      this.setRow(x.getRow());
+    }
+
   }
   public int getDist(Square x){
     return (this.getRow() - x.getRow());
