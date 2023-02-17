@@ -15,8 +15,10 @@ public class King extends Piece {
 
   // validate move method for King
   public boolean validateMove(Square x) {
+    System.out.println("The king validation move");
     int rkDistance = this.getRow() - x.getRow();
     if (canCastle(x, rkDistance)) {
+      System.out.println("Castle method ex");
       castle(x, rkDistance);
       return true;
     }
@@ -24,24 +26,21 @@ public class King extends Piece {
   }
 
   public boolean canCastle(Square x, int rkDistance) {
-    if (this.getRow() == this.getRow() - 2) {
-      if (team) {
-        if (rkDistance == 1 || rkDistance == 2) {
-          if (x.getSymbol() == "♖") {
-            return true;
-          }
-        }
-      }
-    } else if (this.getRow() == this.getRow() + 2) {
-      if (!team) {
-        if (rkDistance == 1 || rkDistance == 2) {
-          if (x.getSymbol() == "♜") {
-            return true;
-          }
-        }
-      }
+    //Need to know if correct king is selected
+    //TODO: Has this alreday happened
+    //Confrim the square we move to is the rook
+    //Check if the rook is the same thing as the king
+    //
+    if(!x.isTeam(team)){
+      return false;
     }
-    return false;
+    else if(!(x.getSymbol() == "♜")){
+      return false;
+    }
+    else if(((this.getRow() - x.getRow())-(this.getColumn() - x.getColumn())) != 0){
+      return false;
+    }
+    return true;
   }
 
   public void castle(Square x, int rkDistance) {
@@ -53,6 +52,15 @@ public class King extends Piece {
       this.setRow(x.getRow());
     }
   }
+
+
+  /*
+  @Override
+  pubic void validateMove(Square x){
+    
+  }
+  */
+
 
   public String toString() {
     if (super.getTeam()) {

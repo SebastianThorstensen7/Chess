@@ -46,6 +46,7 @@ public class Piece {
   // validate move method
   // Super method is king movement
   public boolean validateMove(Square x) {
+    System.out.println("??? piece validate move "+ x);
     if (x.isTeam(team))
       return false;
     if (this.getColumn() != x.getColumn() && this.getRow() != x.getRow()) {
