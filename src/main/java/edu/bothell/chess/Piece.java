@@ -6,6 +6,7 @@ public class Piece {
   // Fields -- or state variables
   // what our Piece has
   boolean team;
+  private boolean protector;
   private Square square;
   private B state;
 
@@ -46,7 +47,7 @@ public class Piece {
   // validate move method
   // Super method is king movement
   public boolean validateMove(Square x) {
-    System.out.println("??? piece validate move "+ x);
+    System.out.println("??? piece validate move " + x);
     if (x.isTeam(team))
       return false;
     if (this.getColumn() != x.getColumn() && this.getRow() != x.getRow()) {
@@ -117,6 +118,14 @@ public class Piece {
     return square.getRow();
   }
 
+  public B getBoard() {
+    return this.state;
+  }
+
+  public Square getSquare() {
+    return this.square;
+  }
+
   public void setBoard(B board) {
     this.state = board;
   }
@@ -133,44 +142,50 @@ public class Piece {
     return this.team;
   }
 
-
-
-
-//Only use for reference for castling
-  
-  public boolean openPath(Square x){
-    return openPath(x,false);
+  public boolean isProtector() {
+    return this.protector;
   }
 
-  public boolean openPath(Square x, boolean checkProtect){
-    //int xMove = getDist(x)[0];
-    //int yMove = getDist(x)[1];
+  public void setProtector(boolean protector) {
+    this.protector = protector;
+  }
+
+  // Only use for reference for castling
+
+  public boolean openPath(Square x) {
+    return openPath(x, false);
+  }
+
+  public boolean openPath(Square x, boolean checkProtect) {
+    // int xMove = getDist(x)[0];
+    // int yMove = getDist(x)[1];
 
     int xMove = getDist(x);
     int yMove = getDist(x);
     int d = getDistance(x);
     B board = new B();
 
-    for(int i = 0; i < d - 1; i++){
-      Square step = board.getSquare(i*xMove+ x.getRow(), i*yMove+ x.getRow());
-      if(checkProtect) getAndTellProtect(step);
-      //if(step.getPiece()) return false;
+    for (int i = 0; i < d - 1; i++) {
+      Square step = board.getSquare(i * xMove + x.getRow(), i * yMove + x.getRow());
+      if (checkProtect)
+        getAndTellProtect(step);
+      // if(step.getPiece()) return false;
     }
     return true;
   }
 
-  public void getAndTellProtect(Square x){
-    if(getDist(x) < 0){
+  public void getAndTellProtect(Square x) {
+    if (getDist(x) < 0) {
       x.setRow(this.getRow() - getDist(x));
       this.setRow(x.getRow());
-    }
-    else if(getDist(x) > 0){
+    } else if (getDist(x) > 0) {
       x.setRow(this.getRow() + getDist(x));
       this.setRow(x.getRow());
     }
 
   }
-  public int getDist(Square x){
+
+  public int getDist(Square x) {
     return (this.getRow() - x.getRow());
   }
 

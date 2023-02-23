@@ -32,6 +32,7 @@ public class B {
   private Piece captured;
   private Square activeSquare;
   private boolean gameOver;
+  private King[] kings = new King[2];
 
   ///////////////////////////////////////////////
   // CONSTRUCTOR(S) of CHESS BOARD
@@ -44,33 +45,26 @@ public class B {
     // TODO: These players are for testing purposes....
     players[0] = new Player("Stever", false);
     players[1] = new Player("Suezy Q", true);
-     pieces.add(new King(false, new Square(4,7),this));
-    pieces.add(new Rook(true, new Square(0,7), this));
-    pieces.add(new Rook(false, new Square(7,7), this));
-    /*
+    kings[0] = new King(true, new Square(4, 0), this);
+    kings[1] = new King(false, new Square(4, 7), this);
+   
 
     for (int i = 0; i < 8; i++) {
       pieces.add(new Pawn(true, new Square(i, 1), this));
+      pieces.add(new Pawn(false, new Square(i, 6), this));
     }
     for (int k = 0; k < 2; k++) {
       pieces.add(new Rook(true, new Square((k * 7), 0), this));
       pieces.add(new Knight(true, new Square((k * 5) + 1, 0), this));
       pieces.add(new Bishop(true, new Square((k * 3) + 2, 0), this));
-    }
-    pieces.add(new King(true, new Square(4, 0), this));
-    pieces.add(new Queen(true, new Square(3, 0), this));
-
-    for (int j = 0; j < 8; j++) {
-      pieces.add(new Pawn(false, new Square(j, 6), this));
-    }
-    for (int k = 0; k < 2; k++) {
       pieces.add(new Rook(false, new Square((k * 7), 7), this));
       pieces.add(new Knight(false, new Square((k * 5) + 1, 7), this));
       pieces.add(new Bishop(false, new Square((k * 3) + 2, 7), this));
     }
-    pieces.add(new King(false, new Square(4, 7), this));
+    
+    pieces.add(new Queen(true, new Square(3, 0), this));
     pieces.add(new Queen(false, new Square(3, 7), this));
-*/
+
     
 
     /////////////////////////////////////////////
@@ -125,7 +119,7 @@ public class B {
     // for loop that gets king
     Piece theKing = null;
     for (Piece p : pieces) {
-      if (p.getTeam() == activePlayer.getTeam() && (p.toString().equals("♔") || p.toString().equals("♚"))) {
+      if (p instanceof King && p.getTeam() == activePlayer.getTeam()) {
         System.out.println("King Acquired! " + p.toString());
         theKing = p;
       }
@@ -142,17 +136,7 @@ public class B {
     return false;
   }
 
-  public boolean isCheck(Square x, boolean kingTeam) {
-    for (Piece p : pieces) {
-      if (p.getTeam() != kingTeam) {
-        if (p.validateMove(x)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
+  
   public void setPieces(ArrayList<Piece> pieces) {
     this.pieces = pieces;
     init();
@@ -218,14 +202,10 @@ public class B {
     if (activePiece == null || activeSquare == null)
       return false;
 
-    //checks if the active piece is the king then looks to see if the spot it wants to move to will put the king in check
     
-    if(activePiece.toString().equals("♔") || activePiece.toString().equals("♚")) {
+    //Checks if the piece is a protector of the king
+    if(activePiece.isProtector()) {
       
-      if(this.isCheck(activeSquare, activePiece.getTeam())) {
-        
-        return false;
-      }
     }
     
     if (!activeSquare.isEmpty())
@@ -234,7 +214,7 @@ public class B {
     // Use the piece to check its move
     // I think we implement here
     
-    return activePiece.validateMove(activeSquare);
+    return (activePiece.validateMove(activeSquare) && activePiece.checkInbetween(activeSquare));
   }
 
   /**

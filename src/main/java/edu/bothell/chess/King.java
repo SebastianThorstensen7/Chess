@@ -1,8 +1,11 @@
 package edu.bothell.chess;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class King extends Piece {
+
+  private ArrayList<Piece> threats;
 
   public King(Boolean team, Square square, B board) {
     super(team, square, board);
@@ -26,18 +29,16 @@ public class King extends Piece {
   }
 
   public boolean canCastle(Square x, int rkDistance) {
-    //Need to know if correct king is selected
-    //TODO: Has this alreday happened
-    //Confrim the square we move to is the rook
-    //Check if the rook is the same thing as the king
+    // Need to know if correct king is selected
+    // TODO: Has this alreday happened
+    // Confrim the square we move to is the rook
+    // Check if the rook is the same thing as the king
     //
-    if(!x.isTeam(team)){
+    if (!x.isTeam(team)) {
       return false;
-    }
-    else if(!(x.getSymbol() == "♜")){
+    } else if (!(x.getSymbol() == "♜")) {
       return false;
-    }
-    else if(((this.getRow() - x.getRow())-(this.getColumn() - x.getColumn())) != 0){
+    } else if (((this.getRow() - x.getRow()) - (this.getColumn() - x.getColumn())) != 0) {
       return false;
     }
     return true;
@@ -53,14 +54,21 @@ public class King extends Piece {
     }
   }
 
+  public void getThreats(Square s) {
+    for (Piece p : super.getBoard().getPieces()) {
+      if (p.getTeam() != super.getTeam()) {
+        if (p.validateMove(s))
+          threats.add(p);
+      }
+    }
+  }
 
   /*
-  @Override
-  pubic void validateMove(Square x){
-    
-  }
-  */
-
+   * @Override
+   * pubic void validateMove(Square x){
+   * 
+   * }
+   */
 
   public String toString() {
     if (super.getTeam()) {

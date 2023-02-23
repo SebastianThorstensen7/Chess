@@ -13,44 +13,40 @@ public class Pawn extends Piece {
 
   // validate move method for pawn
   public boolean validateMove(Square x) {
-    boolean validMove = false;
     if (x.isEmpty()) {
       if (super.getColumn() == x.getColumn()) {
         if ((super.getRow() + 2 == x.getRow()) && super.team == true && firstMove) {
           if (checkInbetween(x)) {
             this.firstMove = false;
-            validMove = true;
+            return true;
           }
 
         } else if ((super.getRow() + 1 == x.getRow()) && (super.team == true)) {
-          validMove = true;
+          return true;
         }
         if ((super.getRow() - 2 == x.getRow()) && super.team == false && firstMove) {
           if (checkInbetween(x)) {
             this.firstMove = false;
-            validMove = true;
+            return true;
           }
         } else if ((super.getRow() - 1 == x.getRow()) && (super.team == false)) {
-          validMove = true;
+          return true;
         }
       }
     } else {
       if (super.team) {
         if ((super.getRow() + 1 == x.getRow())
             && ((super.getColumn() + 1 == x.getColumn()) || (super.getColumn() - 1 == x.getColumn()))) {
-          validMove = true;
+          return true;
         }
       } else {
         if ((super.getRow() - 1 == x.getRow())
             && ((super.getColumn() + 1 == x.getColumn()) || (super.getColumn() - 1 == x.getColumn()))) {
-          validMove = true;
+          return true;
         }
       }
     }
 
-    if (validMove) {
-      return true;
-    }
     return false;
   }
 

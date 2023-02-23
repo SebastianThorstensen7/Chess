@@ -24,29 +24,13 @@ public class Rook extends Piece {
   }
 
   // validate move method for Rook
-  /**
-   * Sebastian: Things to help you update the code
-   * Starting coordinates are now got with super.getRow() and super.getColumn()
-   * Destination coordinates are now got with x.getRow() and x.getColumn()
-   * Don't worry about the check Inbetween method I'll be working on it
-   * 
-   * 
-   */
   public boolean validateMove(Square x) {
-    boolean validMove = false;
-
     if (x.getRow() == super.getRow() || x.getColumn() == super.getColumn()) {
       if (x.isEmpty()) {
-        validMove = true;
+        return true;
       } else if (super.getTeam() != x.getPiece().getTeam()) {
-        validMove = true;
+        return true;
       }
-
-    }
-
-    boolean noPeacesBetween = checkInbetween(x);
-    if (validMove && noPeacesBetween) {
-      return true;
     }
     return false;
   }

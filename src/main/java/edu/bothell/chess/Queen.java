@@ -27,20 +27,14 @@ private double getSlope(int x, int y) {
    * Don't worry about the check Inbetween method I'll be working on it
    */
   public boolean validateMove(Square x) {
-    boolean validMove = false;
     
     if( x.isTeam(team) ) {
       return false;
     } else if(x.getRow() == super.getRow() || x.getColumn() == super.getColumn()) {
-      validMove = true;
+      return true;
     } else if( Math.abs((x.getRow() - super.getRow()) / (x.getColumn() - super.getColumn())) == 1) {
-      validMove = true;
+      return true;
     }
-
-    boolean noPeacesBetween = checkInbetween(x);
-    if(validMove && noPeacesBetween) {
-        return true;
-      }
     return false;
   }
 

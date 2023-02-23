@@ -31,45 +31,39 @@ public class Knight extends Piece {
    * Don't worry about the check Inbetween method I'll be working on it
    */
   public boolean validateMove(Square x) {
-    boolean validMove = false;
-    
+
     if (super.getColumn() + 2 == x.getColumn() || super.getColumn() - 2 == x.getColumn()) {
       if (super.getRow() + 1 == x.getRow() || super.getRow() - 1 == x.getRow()) {
         if (x.isEmpty()) {
-        validMove = true;
-      } else if (super.getTeam() != x.getPiece().getTeam()) {
-        validMove = true;
-      }
+          return true;
+        } else if (super.getTeam() != x.getPiece().getTeam()) {
+          return true;
+        }
       }
     } else if (super.getColumn() + 1 == x.getColumn() || super.getColumn() - 1 == x.getColumn()) {
       if (super.getRow() + 2 == x.getRow() || super.getRow() - 2 == x.getRow()) {
         if (x.isEmpty()) {
-        validMove = true;
-      } else if (super.getTeam() != x.getPiece().getTeam()) {
-        validMove = true;
-      }
+          return true;
+        } else if (super.getTeam() != x.getPiece().getTeam()) {
+          return true;
+        }
       }
     } else if (super.getRow() + 1 == x.getRow() || super.getRow() - 1 == x.getRow()) {
       if (super.getColumn() + 2 == x.getColumn() || super.getColumn() - 2 == x.getColumn()) {
         if (x.isEmpty()) {
-        validMove = true;
-      } else if (super.getTeam() != x.getPiece().getTeam()) {
-        validMove = true;
+          return true;
+        } else if (super.getTeam() != x.getPiece().getTeam()) {
+          return true;
+        }
       }
-      }
-    } else if(super.getRow() + 2 == x.getRow() || super.getRow() - 2 == x.getRow()) {
+    } else if (super.getRow() + 2 == x.getRow() || super.getRow() - 2 == x.getRow()) {
       if (super.getColumn() + 1 == x.getColumn() || super.getColumn() - 1 == x.getColumn()) {
         if (x.isEmpty()) {
-        validMove = true;
-      } else if (super.getTeam() != x.getPiece().getTeam()) {
-        validMove = true;
+          return true;
+        } else if (super.getTeam() != x.getPiece().getTeam()) {
+          return true;
+        }
       }
-      }
-    }
-    
-
-    if (validMove) {
-      return true;
     }
     return false;
   }

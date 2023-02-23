@@ -1,3 +1,12 @@
 {
-  "files": {}
+  "files": {
+    "src/test/java/edu/bothell/chess/KingTest.java": [
+      {
+        "id": "2e5a0f50-e2fa-4f5d-a0b1-ae23480ccbec",
+        "line": 11,
+        "version": 1862,
+        "index": 163
+      }
+    ]
+  }
 }
