@@ -49,6 +49,7 @@ public class B {
     kings[1] = new King(false, new Square(4, 7), this);
    
 
+    
     for (int i = 0; i < 8; i++) {
       pieces.add(new Pawn(true, new Square(i, 1), this));
       pieces.add(new Pawn(false, new Square(i, 6), this));
@@ -64,6 +65,8 @@ public class B {
     
     pieces.add(new Queen(true, new Square(3, 0), this));
     pieces.add(new Queen(false, new Square(3, 7), this));
+    pieces.add(kings[0]);
+    pieces.add(kings[1]);
 
     
 
@@ -127,7 +130,7 @@ public class B {
     //for loop that checks if any piece on the opposite team is putting the active teams king in check
     for (Piece p : pieces) {
       if (p.getTeam() != activePlayer.getTeam()) {
-        if (p.validateMove(activeSquare) && p.checkInbetween(activeSquare, theKing)) {
+        if (p.validateMove(theKing.getSquare()) && p.checkInbetween(theKing.getSquare(), theKing)) {
           System.out.println("In Check!");
           return true;
         }
