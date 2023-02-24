@@ -26,16 +26,16 @@ public class King extends Piece {
         }
       }
     }
-    int rkDistance = this.getRow() - x.getRow();
-    if (canCastle(x, rkDistance)) {
+
+    if (canCastle(x)) {
       System.out.println("Castle method ex");
-      castle(x, rkDistance);
+      castle(x);
       return true;
     }
     return super.validateMove(x);
   }
 
-  public boolean canCastle(Square x, int rkDistance) {
+  public boolean canCastle(Square x) {
     // Need to know if correct king is selected
     // TODO: Has this alreday happened
     // Confrim the square we move to is the rook
@@ -51,12 +51,12 @@ public class King extends Piece {
     return true;
   }
 
-  public void castle(Square x, int rkDistance) {
+  public void castle(Square x) {
     if (x.getSymbol() == "♖") {
-      x.setRow(this.getRow() - rkDistance);
+      x.setRow(this.getRow());
       this.setRow(x.getRow());
     } else if (x.getSymbol() == "♜") {
-      x.setRow(this.getRow() + rkDistance);
+      x.setRow(this.getRow());
       this.setRow(x.getRow());
     }
   }
