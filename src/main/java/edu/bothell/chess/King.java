@@ -20,7 +20,7 @@ public class King extends Piece {
   public boolean validateMove(Square x) {
     System.out.println("The king validation move");
     for(Piece p : super.getBoard().getPieces()) {
-      if(p.getTeam() != super.getTeam()) {
+      if(p.getTeam() != super.getTeam() && !(p instanceof King)) {
         if(p.validateMove(x) && p.checkInbetween(x,this)) {
           return false;
         }
