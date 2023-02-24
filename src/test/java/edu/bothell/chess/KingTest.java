@@ -54,13 +54,13 @@ public class KingTest {
   }
 
 
-  /*
+  
   @Test
   public void cantMoveIntoCheck() {
     //makes sure the king cant move in the way of a piece that can capture it
     assertFalse(board2.checkMove(4,4,3,4));
     // this test below breaks because the kings destination is blocked by the king, so the rook returns false
-    //assertFalse(board2.checkMove(4,4,5,4));
+    assertFalse(board2.checkMove(4,4,5,4));
     assertFalse(board2.checkMove(4,4,4,5));
     assertFalse(board2.checkMove(4,4,3,5));
     assertFalse(board2.checkMove(4,4,5,5));
@@ -68,5 +68,5 @@ public class KingTest {
     assertFalse(board2.checkMove(4,4,5,3));
     assertTrue(board2.checkMove(4,4,4,3));
   }
-  */
+  
 }

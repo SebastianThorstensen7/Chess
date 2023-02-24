@@ -24,12 +24,13 @@ public class Bishop extends Piece {
    * Don't worry about the check Inbetween method I'll be working on it
    */
   public boolean validateMove(Square x) {
-
-    if (Math.abs((x.getRow() - super.getRow()) / (x.getColumn() - super.getColumn())) == 1) {
-      if (x.isEmpty()) {
-        return true;
-      } else if (super.getTeam() != x.getPiece().getTeam()) {
-        return true;
+    if (x.getRow() != super.getRow() && x.getColumn() != super.getColumn()) {
+      if (Math.abs((x.getRow() - super.getRow()) / (x.getColumn() - super.getColumn())) == 1) {
+        if (x.isEmpty()) {
+          return true;
+        } else if (super.getTeam() != x.getPiece().getTeam()) {
+          return true;
+        }
       }
     }
     return false;

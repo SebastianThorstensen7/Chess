@@ -68,18 +68,37 @@ public class Piece {
     return false;
   }
 
-  // Method to check if there a pieces between a location and destination
+  // Method to check if there are pieces between a location and destination
   public boolean checkInbetween(Square end) {
+    return checkInbetween(end,null);
+  }
+
+  //Method to check if there are pieces between a location and destination, but will omit a certain piece fed through parameters
+  public boolean checkInbetween(Square end, Piece omit) {
     int[] direction = getDirection(end);
     for (int i = 1; i < getDistance(end); i++) {
       Square square = state.getSquare(this.getColumn() - (i * direction[0]), this.getRow() - (i * direction[1]));
-      if (!square.isEmpty()) {
+      if (!square.isEmpty() && square.getPiece() != omit) {
         return false;
       }
     }
     return true;
   }
 
+  //Method to get the piece thats blocking a path
+  public Piece getPathBlocker(Square s) {
+    int[] direction = getDirection(s);
+    for (int i = 1; i < getDistance(s); i++) {
+      Square square = state.getSquare(this.getColumn() - (i * direction[0]), this.getRow() - (i * direction[1]));
+      if (!square.isEmpty()) {
+        return square.getPiece();
+      }
+    }
+    return null;
+  }
+
+  
+  //Method to get the direction from one square to another
   public int[] getDirection(Square end) {
     int rowDirect = this.getRow() - end.getRow();
     int columnDirect = this.getColumn() - end.getColumn();
@@ -100,6 +119,7 @@ public class Piece {
     return direction;
   }
 
+  //Method to get the distance from one square to another
   public int getDistance(Square end) {
     int rowDist = Math.abs(this.getRow() - end.getRow());
     int columnDist = Math.abs(this.getColumn() - end.getColumn());

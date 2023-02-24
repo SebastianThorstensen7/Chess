@@ -28,10 +28,12 @@ public class Turn{
   public Turn(){
     System.out.println("TURN?");
   }
+  
   public Turn(B board){
     this.board = board;
     doTurn();
   }
+  
   public Turn(Player player, B board ){
     this.board = board;
     this.player = player;

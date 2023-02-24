@@ -19,6 +19,13 @@ public class King extends Piece {
   // validate move method for King
   public boolean validateMove(Square x) {
     System.out.println("The king validation move");
+    for(Piece p : super.getBoard().getPieces()) {
+      if(p.getTeam() != super.getTeam()) {
+        if(p.validateMove(x) && p.checkInbetween(x,this)) {
+          return false;
+        }
+      }
+    }
     int rkDistance = this.getRow() - x.getRow();
     if (canCastle(x, rkDistance)) {
       System.out.println("Castle method ex");

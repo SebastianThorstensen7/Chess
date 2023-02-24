@@ -127,7 +127,7 @@ public class B {
     //for loop that checks if any piece on the opposite team is putting the active teams king in check
     for (Piece p : pieces) {
       if (p.getTeam() != activePlayer.getTeam()) {
-        if (this.checkMove(p.getColumn(),p.getRow() , theKing.getColumn(),theKing.getRow() )) {
+        if (p.validateMove(activeSquare) && p.checkInbetween(activeSquare, theKing)) {
           System.out.println("In Check!");
           return true;
         }
@@ -212,9 +212,21 @@ public class B {
       captured = activeSquare.getPiece();
 
     // Use the piece to check its move
-    // I think we implement here
     
     return (activePiece.validateMove(activeSquare) && activePiece.checkInbetween(activeSquare));
+  }
+
+  
+  //Method to set any pieces that are protecting the king
+  public void setProtectors(boolean activeTeam, Square s) {
+    for(Piece p : pieces) {
+      if(p.getTeam() != activeTeam && !(p instanceof Knight)) {
+        if(!p.checkInbetween(s)) {
+          Piece protector = p.getPathBlocker(s);
+          protector.setProtector(true);
+        }
+      }
+    }
   }
 
   /**
