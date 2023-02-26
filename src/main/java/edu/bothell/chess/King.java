@@ -17,50 +17,49 @@ public class King extends Piece {
   }
 
   // validate move method for King
-  @Override
+
   public boolean validateMove(Square x) {
     System.out.println("The king validation move");
     for (Piece p : super.getBoard().getPieces()) {
       if (p.getTeam() != super.getTeam() && !(p instanceof King)) {
+        System.out.println("hieuchiew");
         if (p.validateMove(x) && p.checkInbetween(x, this)) {
+          System.out.println("ekjvporj");
           return false;
         }
       }
+      else if (canCastle(p)) {
+        System.out.println("Castle method ex");
+        castle(p);
+        return true;
+      }
     }
 
-    if (canCastle(x)) {
-      System.out.println("Castle method ex");
-      castle(x);
-      return true;
-    }
     return super.validateMove(x);
   }
 
-  public boolean canCastle(Square x) {
+  public boolean canCastle(Piece p) {
     // Need to know if correct king is selected
     // TODO: Has this alreday happened
     // Confrim the square we move to is the rook
     // Check if the rook is the same thing as the king
     //
     System.out.println("Supposed to castle");
-     if (!(x.getSymbol() == "♜" || x.getSymbol() == "♖")) {
+     if (!(p instanceof Rook)) {
       return false;
-    } else if (((x.getColumn() - this.getColumn()) - (x.getRow() - x]this.getRow())) != 0) {
+    } else if (((p.getColumn() - this.getColumn()) - (p.getRow() - this.getRow())) != 0) {
       return false;
-    } else if (!super.checkInbetween(x)) {
+    } else if (!super.checkInbetween(p.getSquare())) {
       return false;
     }
     return true;
   }
 
-  public void castle(Square x) {
-    if (x.getSymbol() == "♖") {
-      x.setRow(this.getRow());
-      this.setRow(x.getRow());
-    } else if (x.getSymbol() == "♜") {
-      x.setRow(this.getRow());
-      this.setRow(x.getRow());
-    }
+  public void castle(Piece p) {
+    if (p instanceof Rook) {
+      p.setRow(this.getRow());
+      this.setRow(p.getRow());
+    } 
   }
 
   public void getThreats(Square s) {
