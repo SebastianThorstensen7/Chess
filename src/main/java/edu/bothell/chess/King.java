@@ -17,7 +17,6 @@ public class King extends Piece {
   }
 
   // validate move method for King
-
   public boolean validateMove(Square x) {
     System.out.println("The king validation move");
     for (Piece p : super.getBoard().getPieces()) {
@@ -29,8 +28,13 @@ public class King extends Piece {
         }
       }
       else if (canCastle(p)) {
+        if(p.getRow() > this.getRow()){
+          p.setRow(this.getRow() - 1);
+        }
+        else if(p.getRow() < this.getRow()){
+          p.setRow(this.getRow() + 1);
+        }
         System.out.println("Castle method ex");
-        castle(p);
         return true;
       }
     }
@@ -47,20 +51,13 @@ public class King extends Piece {
     System.out.println("Supposed to castle");
      if (!(p instanceof Rook)) {
       return false;
-    } else if (((p.getColumn() - this.getColumn()) - (p.getRow() - this.getRow())) != 0) {
+    } else if (((p.getColumn() - this.getColumn())) != 0) {
       return false;
     } else if (!super.checkInbetween(p.getSquare())) {
       return false;
     }
     return true;
-  }
-
-  public void castle(Piece p) {
-    if (p instanceof Rook) {
-      p.setRow(this.getRow());
-      this.setRow(p.getRow());
-    } 
-  }
+  }  
 
   public void getThreats(Square s) {
     for (Piece p : super.getBoard().getPieces()) {
