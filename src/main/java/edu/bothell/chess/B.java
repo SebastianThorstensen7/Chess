@@ -68,8 +68,8 @@ public class B {
     pieces.add(new Queen(true, new Square(3, 0), this));
     pieces.add(new Queen(false, new Square(3, 7), this));
 */
-    pieces.add(kings[0]);
-    pieces.add(kings[1]);
+    //pieces.add(kings[0]);
+    //pieces.add(kings[1]);
 
     
 
@@ -187,6 +187,7 @@ public class B {
    * @param y2 int destination square y position
    * @return boolean is it valid?
    */
+  
   public boolean checkMove(int x1, int y1, int x2, int y2) {
     activePiece = null;
     activeSquare = null;

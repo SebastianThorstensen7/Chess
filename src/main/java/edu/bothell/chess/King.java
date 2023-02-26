@@ -17,11 +17,12 @@ public class King extends Piece {
   }
 
   // validate move method for King
+  @Override
   public boolean validateMove(Square x) {
     System.out.println("The king validation move");
-    for(Piece p : super.getBoard().getPieces()) {
-      if(p.getTeam() != super.getTeam() && !(p instanceof King)) {
-        if(p.validateMove(x) && p.checkInbetween(x,this)) {
+    for (Piece p : super.getBoard().getPieces()) {
+      if (p.getTeam() != super.getTeam() && !(p instanceof King)) {
+        if (p.validateMove(x) && p.checkInbetween(x, this)) {
           return false;
         }
       }
@@ -41,11 +42,12 @@ public class King extends Piece {
     // Confrim the square we move to is the rook
     // Check if the rook is the same thing as the king
     //
-    if (!x.isTeam(team)) {
+    System.out.println("Supposed to castle");
+     if (!(x.getSymbol() == "♜" || x.getSymbol() == "♖")) {
       return false;
-    } else if (!(x.getSymbol() == "♜")) {
+    } else if (((x.getColumn() - this.getColumn()) - (x.getRow() - x]this.getRow())) != 0) {
       return false;
-    } else if (((this.getRow() - x.getRow()) - (this.getColumn() - x.getColumn())) != 0) {
+    } else if (!super.checkInbetween(x)) {
       return false;
     }
     return true;
@@ -69,13 +71,6 @@ public class King extends Piece {
       }
     }
   }
-
-  /*
-   * @Override
-   * pubic void validateMove(Square x){
-   * 
-   * }
-   */
 
   public String toString() {
     if (super.getTeam()) {

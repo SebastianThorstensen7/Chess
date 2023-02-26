@@ -61,6 +61,7 @@ public class Piece {
         return true;
       }
     } else if ((this.getColumn() == x.getColumn()) && (this.getRow() != x.getRow())) {
+
       if ((this.getRow() + 1 == x.getRow()) || (this.getRow() - 1 == x.getRow())) {
         return true;
       }
