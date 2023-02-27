@@ -18,12 +18,9 @@ public class King extends Piece {
 
   // validate move method for King
   public boolean validateMove(Square x) {
-    System.out.println("The king validation move");
     for (Piece p : super.getBoard().getPieces()) {
       if (p.getTeam() != super.getTeam() && !(p instanceof King)) {
-        System.out.println("hieuchiew");
         if (p.validateMove(x) && p.checkInbetween(x, this)) {
-          System.out.println("ekjvporj");
           return false;
         }
       }
@@ -34,7 +31,6 @@ public class King extends Piece {
         else if(p.getRow() < this.getRow()){
           p.setRow(this.getRow() + 1);
         }
-        System.out.println("Castle method ex");
         return true;
       }
     }
@@ -48,7 +44,6 @@ public class King extends Piece {
     // Confrim the square we move to is the rook
     // Check if the rook is the same thing as the king
     //
-    System.out.println("Supposed to castle");
      if (!(p instanceof Rook)) {
       return false;
     } else if (((p.getColumn() - this.getColumn())) != 0) {
@@ -59,14 +54,7 @@ public class King extends Piece {
     return true;
   }  
 
-  public void getThreats(Square s) {
-    for (Piece p : super.getBoard().getPieces()) {
-      if (p.getTeam() != super.getTeam()) {
-        if (p.validateMove(s))
-          threats.add(p);
-      }
-    }
-  }
+
 
   public String toString() {
     if (super.getTeam()) {

@@ -76,8 +76,9 @@ public class Turn{
       System.out.println("Move from (x y) to (x, y)");
       System.out.println("Enter 4 numbers seperated by spaces...");
       x1 = scn.nextInt(); y1 = scn.nextInt(); x2 = scn.nextInt(); y2 = scn.nextInt(); 
+      
 
-      valid = board.checkMove( x1, y1, x2, y2);
+      valid = (board.checkMove( x1, y1, x2, y2)  );
     
       System.out.println("valid mode: " + valid);
 
@@ -104,7 +105,7 @@ public class Turn{
   
   private void check(){
     System.out.println( "player about to play: " + player.getName() );
-    System.out.println( "is player in check?: " + board.isCheck() );    
+    System.out.println( "is player in check?: " + board.isCheck(player.getTeam()) );    
   }
 
   private void intro(){

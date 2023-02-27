@@ -48,9 +48,7 @@ public class B {
     kings[0] = new King(true, new Square(4, 0), this);
     kings[1] = new King(false, new Square(4, 7), this);
    
-    pieces.add(new Rook(true, new Square(0, 7), this));
-    pieces.add(new Rook(false, new Square(7, 7), this));
-    pieces.add(new King(false, new Square(4, 7), this));
+
     
     for (int i = 0; i < 8; i++) {
       pieces.add(new Pawn(true, new Square(i, 1), this));
@@ -67,7 +65,6 @@ public class B {
     
     pieces.add(new Queen(true, new Square(3, 0), this));
     pieces.add(new Queen(false, new Square(3, 7), this));
-
     pieces.add(kings[0]);
     pieces.add(kings[1]);
 
@@ -121,34 +118,27 @@ public class B {
   ///////////////////////////////////////////////
   // METHODS of CHESS BOARD
   ///////////////////////////////////////////////
-  public King getKing(boolean team){
-    for( Piece p : pieces){
-      if(p instanceof King && p.getTeam() == team) 
-        return (King) p;
+  public boolean isCheck() {
+    // for loop that gets king
+    Piece theKing = null;
+    for (Piece p : pieces) {
+      if (p instanceof King && p.getTeam() == activePlayer.getTeam()) {
+        System.out.println("King Acquired! " + p.toString());
+        theKing = p;
+      }
     }
-    return null;
-  }
-
-  public ArrayList<Piece> getThreats(boolean team){
-    ArrayList<Piece> threats = new ArrayList<Piece>();
-    for( Piece p : pieces)
-      if( p.getTeam() != team) threats.add(p);
-    
-    return threats;
-  }
-  // GUS WAS HERE
-  public boolean isCheck(boolean activeTeam) {
-    King k     = getKing(activeTeam);
-    Square s   = k.getSquare();
-    ArrayList<Piece> threats = getThreats(activeTeam);
-
-    for(Piece p:threats){
-      if(p.validateMove(s) && p.checkInbetween(s) ) return true;
+    //for loop that checks if any piece on the opposite team is putting the active teams king in check
+    for (Piece p : pieces) {
+      if (p.getTeam() != activePlayer.getTeam()) {
+        if (p.validateMove(theKing.getSquare()) && p.checkInbetween(theKing.getSquare(), theKing)) {
+          System.out.println("In Check!");
+          return true;
+        }
+      }
     }
-
     return false;
-
   }
+
   
   public void setPieces(ArrayList<Piece> pieces) {
     this.pieces = pieces;
@@ -194,7 +184,6 @@ public class B {
    * @param y2 int destination square y position
    * @return boolean is it valid?
    */
-  
   public boolean checkMove(int x1, int y1, int x2, int y2) {
     activePiece = null;
     activeSquare = null;
@@ -229,15 +218,9 @@ public class B {
     
     return (activePiece.validateMove(activeSquare) && activePiece.checkInbetween(activeSquare));
   }
+
   
-  
-  
-  /**
-   * setProtectors sets any pieces that are protecting the current king
-   *
-   * @param activeTeam the active team of the current turn
-   * @param s the square that contains the piece that needs protecting
-   */
+  //Method to set any pieces that are protecting the king
   public void setProtectors(boolean activeTeam, Square s) {
     for(Piece p : pieces) {
       if(p.getTeam() != activeTeam && !(p instanceof Knight)) {
@@ -268,25 +251,6 @@ public class B {
    */
   public Square getSquare(int x, int y) {
     return board[y][x];
-  }
-
-  /**
-   * leaveSquare takes the piece out of a specified square
-   *
-   * @param s The square that will have its piece removed
-   */
-  public void leaveSquare(Square s){
-    s.setPiece(null);
-  }
-
-  /**
-   * fillSquare takes a specified square and puts the specified piece in said square
-   *
-   * @param s The square that will take the piece
-   * @param p The piece that will placed in the square
-   */
-  public void fillSquare(Square s, Piece p) {
-    s.setPiece(p);
   }
 
   public Square getActiveSquare() {

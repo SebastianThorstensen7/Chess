@@ -7,6 +7,7 @@ public class Piece {
   // what our Piece has
   boolean team;
   private boolean protector;
+  private boolean hasMoved;
   private Square square;
   private B state;
 
@@ -47,7 +48,6 @@ public class Piece {
   // validate move method
   // Super method is king movement
   public boolean validateMove(Square x) {
-    System.out.println("??? piece validate move " + x);
     if (x.isTeam(team))
       return false;
     if (this.getColumn() != x.getColumn() && this.getRow() != x.getRow()) {
@@ -131,6 +131,26 @@ public class Piece {
     }
   }
 
+  public boolean move(Square s){
+    Square org = this.getSquare();
+    Piece orgP  = s.getPiece();
+    state.leaveSquare(this.getSquare());
+    state.fillSquare(s, this);
+
+    if( state.isCheck(getTeam())){
+      state.leaveSquare(s);
+      state.fillSquare(org, this);
+      return false;
+    }
+
+    setSquare(s);
+    s.setPiece(this);
+    state.removePiece(orgP);
+    this.hasMoved = true;
+
+    return true;
+  }
+
   public void setRow(int row) {
     this.square.setRow(row);
   }
@@ -171,6 +191,8 @@ public class Piece {
     this.protector = protector;
   }
 
+  
+
   // Only use for reference for castling
 
   public boolean openPath(Square x) {
@@ -203,7 +225,6 @@ public class Piece {
       x.setRow(this.getRow() + getDist(x));
       this.setRow(x.getRow());
     }
-
   }
 
   public int getDist(Square x) {
