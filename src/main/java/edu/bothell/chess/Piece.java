@@ -6,11 +6,9 @@ public class Piece {
   // Fields -- or state variables
   // what our Piece has
   boolean team;
-  private boolean protector;
   private boolean hasMoved = false;
   private Square square;
   private B state;
-  private King k;
 
   /**
    * GUS: New constructore for a Piece -- adding a board and removing the ID
@@ -73,14 +71,12 @@ public class Piece {
     return false;
   }
 
-
   // Method to check if there are pieces between a location and destination
   public boolean checkInbetween(Square end) {
-    return checkInbetween(end, null);
+    return checkInbetween(end,null);
   }
 
-  // Method to check if there are pieces between a location and destination, but
-  // will omit a certain piece fed through parameters
+  //Method to check if there are pieces between a location and destination, but will omit a certain piece fed through parameters
   public boolean checkInbetween(Square end, Piece omit) {
     int[] direction = getDirection(end);
     for (int i = 1; i < getDistance(end); i++) {
@@ -92,7 +88,7 @@ public class Piece {
     return true;
   }
 
-  // Method to get the piece thats blocking a path
+  //Method to get the piece thats blocking a path
   public Piece getPathBlocker(Square s) {
     int[] direction = getDirection(s);
     for (int i = 1; i < getDistance(s); i++) {
@@ -104,7 +100,8 @@ public class Piece {
     return null;
   }
 
-  // Method to get the direction from one square to another
+  
+  //Method to get the direction from one square to another
   public int[] getDirection(Square end) {
     int rowDirect = this.getRow() - end.getRow();
     int columnDirect = this.getColumn() - end.getColumn();
@@ -125,7 +122,7 @@ public class Piece {
     return direction;
   }
 
-  // Method to get the distance from one square to another
+  //Method to get the distance from one square to another
   public int getDistance(Square end) {
     int rowDist = Math.abs(this.getRow() - end.getRow());
     int columnDist = Math.abs(this.getColumn() - end.getColumn());
@@ -136,32 +133,16 @@ public class Piece {
     }
   }
 
-  public boolean move(Square s) {
-    Square org = this.getSquare();
-    Piece orgP = s.getPiece();
-    state.leaveSquare(this.getSquare());
-    state.fillSquare(s, this);
-
-    if (state.isCheck(getTeam())) {
-      state.leaveSquare(s);
-      state.fillSquare(org, this);
-      return false;
-    }
-
-    setSquare(s);
-    s.setPiece(this);
-    state.removePiece(orgP);
-    this.hasMoved = true;
-
-    return true;
-  }
-
   public void doSpecial(Square x){
-    
+
   }
 
   public boolean getMoved(){
     return hasMoved;
+  }
+
+  public void hasMoved() {
+    hasMoved = true;
   }
 
   public void setRow(int row) {
@@ -196,13 +177,7 @@ public class Piece {
     return this.team;
   }
 
-  public boolean isProtector() {
-    return this.protector;
-  }
 
-  public void setProtector(boolean protector) {
-    this.protector = protector;
-  }
 
   // Only use for reference for castling
 

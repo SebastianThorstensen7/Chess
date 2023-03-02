@@ -19,13 +19,6 @@ public class King extends Piece {
   // validate move method for King
   @Override
   public boolean validateMove(Square x) {
-    for (Piece p : super.getBoard().getPieces()) {
-      if (p.getTeam() != super.getTeam() && !(p instanceof King)) {
-        if (p.validateMove(x) && p.checkInbetween(x, this)) {
-          return false;
-        }
-      }
-    }
     if (canCastle(x)) {
         if (x.getRow() > this.getRow()) {
           System.out.println("Does castling on left");

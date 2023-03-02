@@ -55,9 +55,6 @@ public class Turn{
 
     // get user input
     while(!this.getValidMove()) this.warnInvalid();
-
-    // commit move
-    commit();
   }
   
   public void draw(){
@@ -78,7 +75,7 @@ public class Turn{
       x1 = scn.nextInt(); y1 = scn.nextInt(); x2 = scn.nextInt(); y2 = scn.nextInt(); 
       
 
-      valid = (board.checkMove( x1, y1, x2, y2)  );
+      valid = (board.checkMove( x1, y1, x2, y2) && board.move(board.getSquare(x2,y2),board.getPiece(x1,y1)));
     
       System.out.println("valid mode: " + valid);
 
