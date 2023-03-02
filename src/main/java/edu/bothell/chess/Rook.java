@@ -14,6 +14,8 @@ import java.util.Scanner;
 
 public class Rook extends Piece {
 
+  public boolean hasMoved = false;
+
   public Rook(boolean team, Square square, B board) {
     super(team, square, board);
   }
@@ -27,18 +29,25 @@ public class Rook extends Piece {
   public boolean validateMove(Square x) {
     if (x.getRow() == super.getRow() || x.getColumn() == super.getColumn()) {
       if (x.isEmpty()) {
+        hasMoved = true;
         return true;
-      } else if (super.getTeam() != x.getPiece().getTeam()) {
+      }
+        else if (super.getTeam() != x.getPiece().getTeam()) {
+        hasMoved = true;
         return true;
       }
     }
     return false;
   }
 
+  public boolean getMoved(){
+    return hasMoved;
+  }
+
   public String toString() {
     if (super.getTeam()) {
       return "♖";
-    } else {
+    } else { 
       return "♜";
     }
   }
