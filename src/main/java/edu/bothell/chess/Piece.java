@@ -73,10 +73,11 @@ public class Piece {
 
   // Method to check if there are pieces between a location and destination
   public boolean checkInbetween(Square end) {
-    return checkInbetween(end,null);
+    return checkInbetween(end, null);
   }
 
-  //Method to check if there are pieces between a location and destination, but will omit a certain piece fed through parameters
+  // Method to check if there are pieces between a location and destination, but
+  // will omit a certain piece fed through parameters
   public boolean checkInbetween(Square end, Piece omit) {
     int[] direction = getDirection(end);
     for (int i = 1; i < getDistance(end); i++) {
@@ -88,7 +89,7 @@ public class Piece {
     return true;
   }
 
-  //Method to get the piece thats blocking a path
+  // Method to get the piece thats blocking a path
   public Piece getPathBlocker(Square s) {
     int[] direction = getDirection(s);
     for (int i = 1; i < getDistance(s); i++) {
@@ -100,8 +101,7 @@ public class Piece {
     return null;
   }
 
-  
-  //Method to get the direction from one square to another
+  // Method to get the direction from one square to another
   public int[] getDirection(Square end) {
     int rowDirect = this.getRow() - end.getRow();
     int columnDirect = this.getColumn() - end.getColumn();
@@ -122,7 +122,9 @@ public class Piece {
     return direction;
   }
 
-  //Method to get the distance from one square to another
+  // Method to get the distance from one square to another
+
+  /*
   public int getDistance(Square end) {
     int rowDist = Math.abs(this.getRow() - end.getRow());
     int columnDist = Math.abs(this.getColumn() - end.getColumn());
@@ -131,13 +133,13 @@ public class Piece {
     } else {
       return columnDist;
     }
+  }*/
+
+  public int getDistance(Square x) {
+    return Math.max(Math.abs(this.getRow() - x.getRow()),Math.abs(this.getColumn() - x.getColumn()));
   }
 
-  public void doSpecial(Square x){
-
-  }
-
-  public boolean getMoved(){
+  public boolean getMoved() {
     return hasMoved;
   }
 
@@ -176,8 +178,6 @@ public class Piece {
   public boolean getTeam() {
     return this.team;
   }
-
-
 
   // Only use for reference for castling
 

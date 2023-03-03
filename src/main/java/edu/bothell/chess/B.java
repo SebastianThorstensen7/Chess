@@ -47,7 +47,8 @@ public class B {
     players[1] = new Player("Suezy Q", true);
     kings[0] = new King(true, new Square(4, 0), this);
     kings[1] = new King(false, new Square(4, 7), this);
-    
+
+    /*
     for (int i = 0; i < 8; i++) {
       pieces.add(new Pawn(true, new Square(i, 1), this));
       pieces.add(new Pawn(false, new Square(i, 6), this));
@@ -65,7 +66,7 @@ public class B {
     pieces.add(new Queen(false, new Square(3, 7), this));
 
     pieces.add(kings[0]);
-    pieces.add(kings[1]);
+    pieces.add(kings[1]);*/
 
     init();
   }

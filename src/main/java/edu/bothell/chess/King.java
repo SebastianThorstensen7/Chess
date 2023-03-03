@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class King extends Piece {
 
   private ArrayList<Piece> threats;
+  private B board;
 
   public King(Boolean team, Square square, B board) {
     super(team, square, board);
@@ -20,15 +21,8 @@ public class King extends Piece {
   @Override
   public boolean validateMove(Square x) {
     if (canCastle(x)) {
-        if (x.getRow() > this.getRow()) {
-          System.out.println("Does castling on left");
-          x.setRow(this.getRow() - 1);
-          return true;
-        } else if (x.getRow() < this.getRow()) {
-          System.out.println("Does castling on right");
-          x.setRow(this.getRow() + 1);
-          return true;
-        }
+      //return doSpecial(x);
+      return getDistance(x) == 1;
     }
     return super.validateMove(x);
   }
@@ -58,6 +52,13 @@ public class King extends Piece {
     }
     return true;
   }  
+
+  public void doSpecial(Square x){
+    Rook rook = (Rook) x.getPiece();
+    //Square r = getBoard().getSquare( getX() + getDir(s)[0], getY() );
+    //Square k = getBoard().getSquare( getX() + (getDir(s)[0] * 2), getY()); 
+    board.move(x,rook);
+  }
   
   public String toString() {
     if (super.getTeam()) {
