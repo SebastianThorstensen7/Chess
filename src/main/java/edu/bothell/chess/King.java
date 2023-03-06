@@ -21,10 +21,12 @@ public class King extends Piece {
   @Override
   public boolean validateMove(Square x) {
     if (canCastle(x)) {
-      //return doSpecial(x);
-      return getDistance(x) == 1;
+      return doSpecial(x);
     }
-    return super.validateMove(x);
+    else if(x.getPiece() != null && x.getPiece().getTeam() == this.getTeam()) 
+      return false;
+    
+    return super.getDistance(x) == 1;
   }
 
   public boolean canCastle(Square p) {
@@ -36,28 +38,27 @@ public class King extends Piece {
     
     Piece rook = p.getPiece();
      if (!(rook instanceof Rook) || rook.getTeam() != this.getTeam()) {
-             System.out.println("Can do castling");
       return false;
     } else if (((p.getColumn() - this.getColumn())) != 0) {
-             System.out.println("Can do castling");
+
       return false;
     }
     else if(super.getMoved() || rook.getMoved()){
-            System.out.println("Can do castling");
       return false;
     }
      else if (!super.checkInbetween(p)) {
-             System.out.println("Can do castling");
       return false;
     }
     return true;
   }  
 
-  public void doSpecial(Square x){
+  public boolean doSpecial(Square x){
     Rook rook = (Rook) x.getPiece();
-    //Square r = getBoard().getSquare( getX() + getDir(s)[0], getY() );
-    //Square k = getBoard().getSquare( getX() + (getDir(s)[0] * 2), getY()); 
-    board.move(x,rook);
+    Square r = new Square(6,7);
+    Square k = new Square(5,7); 
+    board.move(r,r.getPiece());
+    board.move(k,k.getPiece());
+    return true;
   }
   
   public String toString() {

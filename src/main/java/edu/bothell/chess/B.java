@@ -48,6 +48,11 @@ public class B {
     kings[0] = new King(true, new Square(4, 0), this);
     kings[1] = new King(false, new Square(4, 7), this);
 
+
+    pieces.add(new Rook(true, new Square(0, 7), this));
+    pieces.add(new Rook(false, new Square(7, 7), this));
+    pieces.add(new King(false, new Square(4, 7), this));
+
     /*
     for (int i = 0; i < 8; i++) {
       pieces.add(new Pawn(true, new Square(i, 1), this));

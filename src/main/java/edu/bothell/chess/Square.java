@@ -6,6 +6,7 @@ public class Square {
   private String symbol;
   private int x;
   private int y;
+  private B board;
 
   public Square() {
     this.piece = null;
@@ -67,6 +68,8 @@ public class Square {
   public boolean isNotOccupied() {
     return isEmpty();
   }
+
+
 
   public String toString() {
     if(piece == null) {
